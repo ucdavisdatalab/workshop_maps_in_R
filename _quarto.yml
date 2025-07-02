@@ -1,0 +1,41 @@
+project:
+  type: book
+  render:  # only render index.qmd and .qmd files in chapters/
+    - "index.qmd"
+    - "chapters/*.qmd"
+  execute-dir: project  # working directory is always root of project
+  output-dir: "docs/"
+
+book:
+  # Metadata (fill this in):
+  repo-url: "https://github.com/ucdavisdatalab/WORKSHOP_NAME"
+  title: "WORKSHOP_TITLE"
+  author:
+    - "AUTHOR_NAME"
+  chapters:
+    - "index.qmd"
+    # List your chapters in order here.
+    - "chapters/references.qmd"
+    - "chapters/assessment.qmd"
+
+  # Formatting (be careful about changing these):
+  date: now
+  repo-actions: [issue, source]
+  sidebar:
+    logo: "images/datalab-logo-full-color-rgb-1.png"
+    logo-alt: "The logo of the UC Davis DataLab."
+    logo-href: "https://datalab.ucdavis.edu/"
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+  # Uncomment to also generate a PDF:
+  # pdf: default
+
+# Uncommentt if you want to use BibTex or BibLaTeX references.
+# bibliography: references.bib
+
+# Cache computations from each chapter:
+execute:
+  freeze: auto
