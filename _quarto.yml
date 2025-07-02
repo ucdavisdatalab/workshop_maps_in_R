@@ -8,15 +8,15 @@ project:
 
 book:
   # Metadata (fill this in):
-  repo-url: "https://github.com/ucdavisdatalab/WORKSHOP_NAME"
-  title: "WORKSHOP_TITLE"
+  repo-url: "https://github.com/ucdavisdatalab/workshop_maps_in_R"
+  title: "Maps in R"
   author:
-    - "AUTHOR_NAME"
+    - "Michele Tobias, PhD"
   chapters:
     - "index.qmd"
     # List your chapters in order here.
     - "chapters/references.qmd"
-    - "chapters/assessment.qmd"
+    #- "chapters/assessment.qmd"
 
   # Formatting (be careful about changing these):
   date: now
