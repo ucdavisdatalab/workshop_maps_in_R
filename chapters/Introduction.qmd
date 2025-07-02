@@ -1,0 +1,13 @@
+# Introduction
+
+R is probably best used for cleaning and analyzing spatial data. Making good quality maps, however, takes a different set of skills.
+
+
+# Data Set
+
+[Describe the dataset here]
+
+[Where is the data?]
+
+
+

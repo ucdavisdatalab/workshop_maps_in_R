@@ -5,7 +5,18 @@
 
 After completing this chapter, learners should be able to:
 
-* YOUR LEARNING GOALS
+* Apply popular mapping workflows to create maps with spatial data
+* Assess which workflow works best in different situations
+* Apply cartographic best practices to a map composition in R
 :::
 
-YOUR DESCRIPTION, PREREQUISITES, ETC
+##### Workshop Description
+
+In this workshop, participants will learn how to use several options for composing maps in R.
+
+##### Prerequisites
+
+For the best experience, we recommend learners have the following skills before taking this workshop:
+
+* an introductory understanding of programming in R (for example, you are familiar with how to load libraries, load common data formats like a CSV, and are comfortable running basic commands). See DataLab's [R Basics Workshop](https://ucdavisdatalab.github.io/workshop_r_basics/) for help.
+* an introductory understanding of spatial data (for example, you are familiar with the difference between raster and vector data). See [DataLab's Spatial Data Formats Workshop](https://ucdavisdatalab.github.io/workshop_spatial_data_formats/) for help.
