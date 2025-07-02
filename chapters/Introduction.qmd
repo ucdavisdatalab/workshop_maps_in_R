@@ -3,11 +3,18 @@
 R is probably best used for cleaning and analyzing spatial data. Making good quality maps, however, takes a different set of skills.
 
 
-# Data Set
+## Data Set
 
 [Describe the dataset here]
 
 [Where is the data?]
+
+
+## Map Details
+
+[Describe the map we're going to make here]
+
+
 
 
 
