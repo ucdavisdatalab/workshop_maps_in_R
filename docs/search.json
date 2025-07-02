@@ -1,0 +1,22 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Maps in R",
+    "section": "",
+    "text": "Overview\n\n\n\n\n\n\nLearning Goals\n\n\n\nAfter completing this chapter, learners should be able to:\n\nApply popular mapping workflows to create maps with spatial data\nAssess which workflow works best in different situations\nApply cartographic best practices to a map composition in R\n\n\n\n\nWorkshop Description\nIn this workshop, participants will learn how to use several options for composing maps in R.\n\n\nPrerequisites\nFor the best experience, we recommend learners have the following skills before taking this workshop:\n\nan introductory understanding of programming in R (for example, you are familiar with how to load libraries, load common data formats like a CSV, and are comfortable running basic commands). See DataLab’s R Basics Workshop for help.\nan introductory understanding of spatial data (for example, you are familiar with the difference between raster and vector data). See DataLab’s Spatial Data Formats Workshop for help.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "chapters/Introduction.html",
+    "href": "chapters/Introduction.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "R is probably best used for cleaning and analyzing spatial data. Making good quality maps, however, takes a different set of skills.\n\n2 Data Set\n[Describe the dataset here]\n[Where is the data?]",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  }
+]
