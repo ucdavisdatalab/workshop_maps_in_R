@@ -38,16 +38,16 @@ To get started:
 # Workshop: WORKSHOP_TITLE
 
 _[UC Davis DataLab][datalab]_  
-_QUARTER YEAR_  
-_Author(s): YOUR_NAME_  
-_Maintainer: MAINTAINER_NAME <<MAINTAINER_EMAIL@ucdavis.edu>>_
+_maptimeDavis Fall 2025_  
+_Author(s): Michele Tobias_  
+_Maintainer: Michele Tobias <<mmtobias@ucdavis.edu>>_
 
 The reader for this workshop is [here][reader].
 
-SHORT DESCRIPTION OF WORKSHOP
+In this workshop, participants will learn how to use several options for composing maps in R.
 
 [datalab]: https://datalab.ucdavis.edu/
-[reader]: https://ucdavisdatalab.github.io/YOUR_REPOSITORY/
+[reader]: https://ucdavisdatalab.github.io/workshop_maps_in_R/
 
 
 ## Contributing
