@@ -14,9 +14,39 @@
     "href": "chapters/Introduction.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "R is probably best used for cleaning and analyzing spatial data. Making good quality maps, however, takes a different set of skills.\n\n2 Data Set\n[Describe the dataset here]\n[Where is the data?]",
+    "text": "1.1 Data Set\nR is probably best used for cleaning and analyzing spatial data. Making good quality maps, however, takes a different set of skills.\n[Describe the dataset here]\n[Where is the data?]",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Introduction.html#map-details",
+    "href": "chapters/Introduction.html#map-details",
+    "title": "1  Introduction",
+    "section": "1.2 Map Details",
+    "text": "1.2 Map Details\n[Describe the map we’re going to make here]",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Additional_Resources.html",
+    "href": "chapters/Additional_Resources.html",
+    "title": "2  Additional Resources",
+    "section": "",
+    "text": "2.1 Working with Spatial Data\nBelow are some other materials we think you might find helpful either as a rereference or as a tool to learn more about this topic.\nDataLab’s Cartography for Academic Publications Workshop\nDataLab’s Spatial Data Formats Workshop\nmaptimeDavis - a welcoming community of practice focused on spatial data",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Additional Resources</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Additional_Resources.html#learning-using-r",
+    "href": "chapters/Additional_Resources.html#learning-using-r",
+    "title": "2  Additional Resources",
+    "section": "2.2 Learning & Using R",
+    "text": "2.2 Learning & Using R\nDataLab’s R Basics Workshop\nDavis R Users Group - a welcoming community of practice focused on using the R programming language",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Additional Resources</span>"
     ]
   }
 ]
