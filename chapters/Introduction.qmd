@@ -5,20 +5,50 @@ R is probably best used for cleaning and analyzing spatial data. Making good qua
 
 ## Data Set
 
-[Describe the dataset here]
+If you haven't already, download the [workshop data](https://ucdavis.box.com/s/ozobvtvehgmsnfrizwb2darqfsoqmmgq) from the online repository. If you downloaded a .zip file, unzip the data to a folder you can easily find.
 
-[Where is the data?]
+The data we have to work with today is:
+
+ * Lake Monsters - LakeMonsters.gpkg - locations of lake monsters; global distribution
+ * Lakes - Lakes_GreatLakes-Area.gpkg - a clip of the Natural Earth Data lakes dataset for the Great Lakes and areas adjacent
+ * States - US_CAN_Admin1.gpkg - a clip of the Natural Earth Data states and provinces data for the US and Canada (I'm going to refer to these as "states" for simplicity, but I want to acknowledge that this includes Canadian provinces as well.)
+
+Geopackage (.gpkg) is a single file, open vector format. We're using it today because it's one file per dataset (unlike Shapefile), which makes data management so much easier. See the README.txt file that comes with the data download for more details and sources of the data.
+
+### Data Processing
+We'll be working with an international dataset of locations of lake monsters, the most famous of which is arguably Nessie who supposedly lives in Loch Ness in Scotland. This dataset was assembled from Wikipedia's List of Lake Monsters. The lake names were geocoded (you can find the R script that I wrote to process the data in the r_scripts folder of [this repo](https://github.com/MicheleTobias/Workshop-Cartography-Journal-Figures), corrected, then exported to a geopackage file. Why did I process this data for you? It took a few hours to do and requires skills we are not focusing on in this workshop.
+
+### Recommended File Structure
+
+This is the folder structure this workshop will assume you have:
+
+workshop_maps_in_r/
+└── data/
+     └── LakeMonsters.gpkg
+     └── Lakes_GreatLakes-Area.gpkg	 
+     └── README.txt
+     └── US_CAN_Admin1.gpkg	 
+└── output/
 
 
 ## Map Details
 
-[Describe the map we're going to make here]
+Let's pretend we want to a map for a journal article about the underpinnings of the distribution of cryptozoology sightings in the northeastern US and southeastern Canada, focusing on lake monsters, creatures reported to live in lakes that are mainly known from folklore and typically take on the the shape of extinct or extraordinarlily large living reptiles. You want your readers to understand the relationship between the monster locations and also their location on the planet. In our imaginary scenario, we plan to submit our paper to one of the Nature journals.
 
+What's the story? What should readers learn from this map? What data do you need to tell that story effectively?
 
-## Open R Studio
+The story I plan to tell is: where are these monsters reported to live in the US Great Lakes area? What are their names? For reference, what lakes and states or provinces are they in? The story you want to tell might be different, so feel free to make adjustments as needed.
 
 
 
 ## Load Spatial Data
 
+Open RStudio and create a new script file. Save it in your folder for this workshop.
+
+Set your working directory to your workshop folder
+
+```{r chunk-label, eval=FALSE, echo = TRUE, fig.cap = 'A figure caption.'}
+	# set your working directory
+	setwd("path/to/your/workshop/folder/workshop_maps_in_r")
+```
 
