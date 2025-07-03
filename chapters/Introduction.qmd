@@ -70,8 +70,10 @@ Load the libraries that we will need. If you have not installed these packages y
 Let's load the data we'll need.
 
 ```{r chunk-label, eval=TRUE, echo = TRUE}
-	# set your working directory
+	# read spatial data
 	
-	setwd("path/to/your/workshop/folder/workshop_maps_in_r")
+	monsters <- read_sf("data/LakeMonsters.gpkg")
+	lakes <- read_sf("data/Lakes_GreatLakes-Area.gpkg")
+	states <- read_sf("data/US_CAN_Admin1.gpkg")
 ```
 
