@@ -1,0 +1,9 @@
+# Base R
+
+R comes with tools to create basic graphs like scatter plots. Many spatial data packages extend these tools to work with spatial data, allowing us to use the `plot()` function to visualize spatial data in map form.  This is often a quick and convenient way to visualize your data to check results.
+
+```{r chunk-label, echo = FALSE, fig.cap = 'A figure caption.'}
+	1 + 1
+	rnorm(10)  # 10 random numbers
+	#plot(dist ~ speed, cars)  # a scatterplot
+```
