@@ -4,7 +4,7 @@ Below are some other materials we think you might find helpful either as a reref
 
 ## Working with Spatial Data
 
-DataLab's [Cartography for Academic Publications Workshop]()
+DataLab's [Cartography for Academic Publications Workshop](https://github.com/MicheleTobias/Workshop-Cartography-Journal-Figures)
 
 DataLab's [Spatial Data Formats Workshop](https://ucdavisdatalab.github.io/workshop_spatial_data_formats/)
 
