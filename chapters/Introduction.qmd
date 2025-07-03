@@ -55,6 +55,23 @@ Set your working directory to your workshop folder
 
 ```{r chunk-label, eval=FALSE, echo = TRUE, fig.cap = 'A figure caption.'}
 	# set your working directory
+	
+	setwd("path/to/your/workshop/folder/workshop_maps_in_r")
+```
+
+Load the libraries that we will need. If you have not installed these packages yet, you can do so with the command `install.packages("PackageName")`
+
+```{r chunk-label, eval=FALSE, echo = TRUE}
+	# load libraries
+	
+	library(sf)   # for working with spatial data
+```
+
+Let's load the data we'll need.
+
+```{r chunk-label, eval=TRUE, echo = TRUE}
+	# set your working directory
+	
 	setwd("path/to/your/workshop/folder/workshop_maps_in_r")
 ```
 
