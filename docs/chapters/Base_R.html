@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Introduction – Maps in R</title>
+<title>2&nbsp; Base R – Maps in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/Base_R.html" rel="next">
-<link href="../index.html" rel="prev">
+<link href="../chapters/Additional_Resources.html" rel="next">
+<link href="../chapters/Introduction.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/Introduction.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/Base_R.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Base R</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -154,13 +154,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/Introduction.html" class="sidebar-item-text sidebar-link active">
+  <a href="../chapters/Introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/Base_R.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/Base_R.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Base R</span></span></a>
   </div>
 </li>
@@ -175,27 +175,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#data-set" id="toc-data-set" class="nav-link active" data-scroll-target="#data-set"><span class="header-section-number">1.1</span> Data Set</a>
-  <ul class="collapse">
-  <li><a href="#data-processing" id="toc-data-processing" class="nav-link" data-scroll-target="#data-processing"><span class="header-section-number">1.1.1</span> Data Processing</a></li>
-  <li><a href="#recommended-file-structure" id="toc-recommended-file-structure" class="nav-link" data-scroll-target="#recommended-file-structure"><span class="header-section-number">1.1.2</span> Recommended File Structure</a></li>
-  </ul></li>
-  <li><a href="#map-details" id="toc-map-details" class="nav-link" data-scroll-target="#map-details"><span class="header-section-number">1.2</span> Map Details</a></li>
-  <li><a href="#load-spatial-data" id="toc-load-spatial-data" class="nav-link" data-scroll-target="#load-spatial-data"><span class="header-section-number">1.3</span> Load Spatial Data</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/blob/main/chapters/Introduction.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Base R</span></h1>
 </div>
 
 
@@ -212,98 +200,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>R is probably best used for cleaning and analyzing spatial data. Making good quality maps, however, takes a different set of skills.</p>
-<section id="data-set" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="data-set"><span class="header-section-number">1.1</span> Data Set</h2>
-<p>If you haven’t already, download the <a href="https://ucdavis.box.com/s/ozobvtvehgmsnfrizwb2darqfsoqmmgq">workshop data</a> from the online repository. If you downloaded a .zip file, unzip the data to a folder you can easily find.</p>
-<p>The data we have to work with today is:</p>
-<ul>
-<li>Lake Monsters - LakeMonsters.gpkg - locations of lake monsters; global distribution</li>
-<li>Lakes - Lakes_GreatLakes-Area.gpkg - a clip of the Natural Earth Data lakes dataset for the Great Lakes and areas adjacent</li>
-<li>States - US_CAN_Admin1.gpkg - a clip of the Natural Earth Data states and provinces data for the US and Canada (I’m going to refer to these as “states” for simplicity, but I want to acknowledge that this includes Canadian provinces as well.)</li>
-</ul>
-<p>Geopackage (.gpkg) is a single file, open vector format. We’re using it today because it’s one file per dataset (unlike Shapefile), which makes data management so much easier. See the README.txt file that comes with the data download for more details and sources of the data.</p>
-<section id="data-processing" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="data-processing"><span class="header-section-number">1.1.1</span> Data Processing</h3>
-<p>We’ll be working with an international dataset of locations of lake monsters, the most famous of which is arguably Nessie who supposedly lives in Loch Ness in Scotland. This dataset was assembled from Wikipedia’s List of Lake Monsters. The lake names were geocoded (you can find the R script that I wrote to process the data in the r_scripts folder of <a href="https://github.com/MicheleTobias/Workshop-Cartography-Journal-Figures">this repo</a>, corrected, then exported to a geopackage file. Why did I process this data for you? It took a few hours to do and requires skills we are not focusing on in this workshop.</p>
-</section>
-<section id="recommended-file-structure" class="level3" data-number="1.1.2">
-<h3 data-number="1.1.2" class="anchored" data-anchor-id="recommended-file-structure"><span class="header-section-number">1.1.2</span> Recommended File Structure</h3>
-<p>This is the folder structure this workshop will assume you have:</p>
-<p>workshop_maps_in_r/</p>
-<p>└── data/</p>
-<pre><code> └── LakeMonsters.gpkg
- 
- └── Lakes_GreatLakes-Area.gpkg  
- 
- └── README.txt
- 
- └── US_CAN_Admin1.gpkg  </code></pre>
-<p>└── output/</p>
-</section>
-</section>
-<section id="map-details" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="map-details"><span class="header-section-number">1.2</span> Map Details</h2>
-<p>Let’s pretend we want to a map for a journal article about the underpinnings of the distribution of cryptozoology sightings in the northeastern US and southeastern Canada, focusing on lake monsters, creatures reported to live in lakes that are mainly known from folklore and typically take on the the shape of extinct or extraordinarlily large living reptiles. You want your readers to understand the relationship between the monster locations and also their location on the planet. In our imaginary scenario, we plan to submit our paper to one of the Nature journals.</p>
-<p>What’s the story? What should readers learn from this map? What data do you need to tell that story effectively?</p>
-<p>The story I plan to tell is: where are these monsters reported to live in the US Great Lakes area? What are their names? For reference, what lakes and states or provinces are they in? The story you want to tell might be different, so feel free to make adjustments as needed.</p>
-</section>
-<section id="load-spatial-data" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="load-spatial-data"><span class="header-section-number">1.3</span> Load Spatial Data</h2>
-<p>Open RStudio and create a new script file. Save it in your folder for this workshop.</p>
-<p>Set your working directory to your workshop folder</p>
+<p>R comes with tools to create basic graphs like scatter plots. Many spatial data packages extend these tools to work with spatial data, allowing us to use the <code>plot()</code> function to visualize spatial data in map form. This is often a quick and convenient way to visualize your data to check results.</p>
+<p>It seems pretty intuitive, but let’s look at what happens if we use the plot command to plot our monsters data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set your working directory</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">setwd</span>(<span class="st">"path/to/your/workshop/folder/workshop_maps_in_r"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(monsters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Base_R_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<p>Load the libraries that we will need. If you have not installed these packages yet, you can do so with the command <code>install.packages("PackageName")</code></p>
+</div>
+</div>
+<p>Whoops! What happened? If we don’t specify which column in the attribute table to plot, plot() tries to plot all of them sequentially. If you have a large dataset, this can take a while and it’s almost never what we actually want.</p>
+<p>Let’s just plot the shapes without any data. We can do this by specifying that we want to plot the geometry column. In this case, it’s called “geom”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load libraries</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(sf)   <span class="co"># for working with spatial data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">#plot(monsters$geom)  #this option also works in this situation</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(monsters[<span class="st">"geom"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Base_R_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<p>Let’s load the data we’ll need.</p>
-<div class="cell" data-ouput="false">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># read spatial data</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    monsters <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/LakeMonsters.gpkg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Reading layer `LakeMonsters' from data source 
-  `C:\Users\mmtobias\Documents\GitHub\workshop_maps_in_R\data\LakeMonsters.gpkg' 
-  using driver `GPKG'
-Simple feature collection with 55 features and 9 fields
-Geometry type: POINT
-Dimension:     XY
-Bounding box:  xmin: -123.4696 ymin: -41.00612 xmax: 144.3105 ymax: 65.35767
-Geodetic CRS:  WGS 84</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>    lakes <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/Lakes_GreatLakes-Area.gpkg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Reading layer `Lakes_GreatLakes-Area' from data source 
-  `C:\Users\mmtobias\Documents\GitHub\workshop_maps_in_R\data\Lakes_GreatLakes-Area.gpkg' 
-  using driver `GPKG'
-Simple feature collection with 110 features and 10 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: -101.2215 ymin: 35.93167 xmax: -64.94982 ymax: 54.41538
-Geodetic CRS:  WGS 84</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>    states <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/US_CAN_Admin1.gpkg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Reading layer `US_CAN_Admin1' from data source 
-  `C:\Users\mmtobias\Documents\GitHub\workshop_maps_in_R\data\US_CAN_Admin1.gpkg' 
-  using driver `GPKG'
-Simple feature collection with 64 features and 83 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: -178.1945 ymin: 18.96391 xmax: -52.65365 ymax: 83.11611
-Geodetic CRS:  WGS 84</code></pre>
+<p>Let’s plot them by marker type:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(monsters[<span class="st">"marker"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Base_R_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -725,13 +659,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../index.html" class="pagination-link" aria-label="Overview">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Overview</span>
+      <a href="../chapters/Introduction.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/Base_R.html" class="pagination-link" aria-label="Base R">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Base R</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/Additional_Resources.html" class="pagination-link" aria-label="Additional Resources">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Additional Resources</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -740,4 +674,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/blob/main/chapters/Introduction.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/blob/main/chapters/Base_R.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
