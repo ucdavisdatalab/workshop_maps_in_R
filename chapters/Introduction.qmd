@@ -15,6 +15,10 @@ R is probably best used for cleaning and analyzing spatial data. Making good qua
 [Describe the map we're going to make here]
 
 
+## Open R Studio
 
+
+
+## Load Spatial Data
 
 

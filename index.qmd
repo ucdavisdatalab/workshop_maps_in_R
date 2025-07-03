@@ -14,6 +14,14 @@ After completing this chapter, learners should be able to:
 
 In this workshop, participants will learn how to use several options for composing maps in R.
 
+##### Software & Data
+
+To fully participate in this workshop, learners will need to attend to the following before the workshop:
+
+1. Download and [install R](https://cran.rstudio.com/)
+1. Download and [install RStudio](https://posit.co/download/rstudio-desktop/)
+1. Download the [workshop data](https://ucdavis.box.com/s/ozobvtvehgmsnfrizwb2darqfsoqmmgq) and store it in a location they can find such as a folder dedicated to this workshop (we do not recommend leaving it in your Downloads folder). This is the same data we use in the Cartography for Academic Publications Workshop.
+
 ##### Prerequisites
 
 For the best experience, we recommend learners have the following skills before taking this workshop:
