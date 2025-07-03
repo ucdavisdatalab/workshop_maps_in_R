@@ -23,11 +23,17 @@ We'll be working with an international dataset of locations of lake monsters, th
 This is the folder structure this workshop will assume you have:
 
 workshop_maps_in_r/
+
 └── data/
-     └── LakeMonsters.gpkg
-     └── Lakes_GreatLakes-Area.gpkg	 
-     └── README.txt
-     └── US_CAN_Admin1.gpkg	 
+     
+	 └── LakeMonsters.gpkg
+     
+	 └── Lakes_GreatLakes-Area.gpkg	 
+     
+	 └── README.txt
+     
+	 └── US_CAN_Admin1.gpkg	 
+
 └── output/
 
 
