@@ -72,8 +72,8 @@ Let's load the data we'll need.
 ```{r chunk-loaddata, eval=TRUE, echo = TRUE}
 	# read spatial data
 	
-	monsters <- read_sf("data/LakeMonsters.gpkg", layername="LakeMonsters")
-	lakes <- read_sf("data/Lakes_GreatLakes-Area.gpkg", layername="Lakes_GreatLakes-Area")
-	states <- read_sf("data/US_CAN_Admin1.gpkg", layername="US_CAN_Admin1")
+	monsters <- st_read("data/LakeMonsters.gpkg")
+	lakes <- st_read("data/Lakes_GreatLakes-Area.gpkg")
+	states <- st_read("data/US_CAN_Admin1.gpkg")
 ```
 
