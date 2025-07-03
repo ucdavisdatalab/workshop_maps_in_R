@@ -61,7 +61,7 @@ Set your working directory to your workshop folder
 
 Load the libraries that we will need. If you have not installed these packages yet, you can do so with the command `install.packages("PackageName")`
 
-```{r chunk-libraries, eval=FALSE, echo = TRUE}
+```{r chunk-libraries, eval=TRUE, echo = TRUE}
 	# load libraries
 	
 	library(sf)   # for working with spatial data
@@ -69,7 +69,7 @@ Load the libraries that we will need. If you have not installed these packages y
 
 Let's load the data we'll need.
 
-```{r chunk-loaddata, eval=TRUE, echo = TRUE}
+```{r chunk-loaddata, eval=TRUE, echo = TRUE, ouput = FALSE}
 	# read spatial data
 	
 	monsters <- st_read("data/LakeMonsters.gpkg")

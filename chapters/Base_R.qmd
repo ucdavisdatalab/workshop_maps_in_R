@@ -1,9 +1,31 @@
+
+```{r echo = FALSE, output = FALSE}
+  # Quarto can't see the variables from previous chapters [commentary withheld] so we need to run a script that will load the data invisibly	
+  source("r/load_data.R")
+```
+
 # Base R
 
 R comes with tools to create basic graphs like scatter plots. Many spatial data packages extend these tools to work with spatial data, allowing us to use the `plot()` function to visualize spatial data in map form.  This is often a quick and convenient way to visualize your data to check results.
 
-```{r chunk-label, echo = TRUE, fig.cap = 'A figure caption.'}
-	1 + 1
-	rnorm(10)  # 10 random numbers
-	#plot(dist ~ speed, cars)  # a scatterplot
+It seems pretty intuitive, but let's look at what happens if we use the plot command to plot our monsters data:
+
+```{r echo = TRUE}
+	plot(monsters)
 ```
+
+Whoops! What happened? If we don't specify which column in the attribute table to plot, plot() tries to plot all of them sequentially. If you have a large dataset, this can take a while and it's almost never what we actually want.
+
+Let's just plot the shapes without any data. We can do this by specifying that we want to plot the geometry column. In this case, it's called "geom".
+
+```{r echo = TRUE}
+	#plot(monsters$geom)  #this option also works in this situation
+  plot(monsters["geom"])
+```
+
+Let's plot them by marker type: 
+
+```{r echo = TRUE}
+	plot(monsters["marker"])
+```
+
