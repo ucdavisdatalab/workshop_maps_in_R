@@ -16,8 +16,8 @@ book:
     - "index.qmd"
     # List your chapters in order here.
     - "chapters/Introduction.qmd"
-    - "chapters/Additional_Resources.qmd"
     - "chapters/Base_R.qmd"
+    - "chapters/Additional_Resources.qmd"
     #- "chapters/assessment.qmd"
 
   # Formatting (be careful about changing these):
