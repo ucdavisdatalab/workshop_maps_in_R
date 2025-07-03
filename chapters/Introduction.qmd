@@ -75,6 +75,5 @@ Let's load the data we'll need.
 	monsters <- read_sf("data/LakeMonsters.gpkg", layername="LakeMonsters")
 	lakes <- read_sf("data/Lakes_GreatLakes-Area.gpkg", layername="Lakes_GreatLakes-Area")
 	states <- read_sf("data/US_CAN_Admin1.gpkg", layername="US_CAN_Admin1")
-)
 ```
 
