@@ -218,9 +218,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If you haven’t already, download the <a href="https://ucdavis.box.com/s/ozobvtvehgmsnfrizwb2darqfsoqmmgq">workshop data</a> from the online repository. If you downloaded a .zip file, unzip the data to a folder you can easily find.</p>
 <p>The data we have to work with today is:</p>
 <ul>
-<li>Lake Monsters - LakeMonsters.gpkg - locations of lake monsters; global distribution</li>
-<li>Lakes - Lakes_GreatLakes-Area.gpkg - a clip of the Natural Earth Data lakes dataset for the Great Lakes and areas adjacent</li>
-<li>States - US_CAN_Admin1.gpkg - a clip of the Natural Earth Data states and provinces data for the US and Canada (I’m going to refer to these as “states” for simplicity, but I want to acknowledge that this includes Canadian provinces as well.)</li>
+<li><strong>Lake Monsters</strong> - LakeMonsters.gpkg - locations of lake monsters; global distribution</li>
+<li><strong>Lakes</strong> - Lakes_GreatLakes-Area.gpkg - a clip of the Natural Earth Data lakes dataset for the Great Lakes and areas adjacent</li>
+<li><strong>States</strong> - US_CAN_Admin1.gpkg - a clip of the Natural Earth Data states and provinces data for the US and Canada (I’m going to refer to these as “states” for simplicity, but I want to acknowledge that this includes Canadian provinces as well.)</li>
 </ul>
 <p>Geopackage (.gpkg) is a single file, open vector format. We’re using it today because it’s one file per dataset (unlike Shapefile), which makes data management so much easier. See the README.txt file that comes with the data download for more details and sources of the data.</p>
 <section id="data-processing" class="level3" data-number="1.1.1">
@@ -230,16 +230,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="recommended-file-structure" class="level3" data-number="1.1.2">
 <h3 data-number="1.1.2" class="anchored" data-anchor-id="recommended-file-structure"><span class="header-section-number">1.1.2</span> Recommended File Structure</h3>
 <p>This is the folder structure this workshop will assume you have:</p>
-<p>workshop_maps_in_r/</p>
-<p>└── data/</p>
-<pre><code> └── LakeMonsters.gpkg
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Directory Structure
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>workshop_maps_in_r</strong>/</p>
+<p>└── <strong>data</strong>/</p>
+<pre><code>     └── LakeMonsters.gpkg
  
- └── Lakes_GreatLakes-Area.gpkg  
+     └── Lakes_GreatLakes-Area.gpkg  
  
- └── README.txt
+     └── README.txt
  
- └── US_CAN_Admin1.gpkg  </code></pre>
-<p>└── output/</p>
+     └── US_CAN_Admin1.gpkg  </code></pre>
+<p>└── <strong>output</strong>/</p>
+</div>
+</div>
 </section>
 </section>
 <section id="map-details" class="level2" data-number="1.2">
