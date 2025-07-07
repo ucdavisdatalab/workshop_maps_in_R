@@ -9,9 +9,9 @@ If you haven't already, download the [workshop data](https://ucdavis.box.com/s/o
 
 The data we have to work with today is:
 
- * Lake Monsters - LakeMonsters.gpkg - locations of lake monsters; global distribution
- * Lakes - Lakes_GreatLakes-Area.gpkg - a clip of the Natural Earth Data lakes dataset for the Great Lakes and areas adjacent
- * States - US_CAN_Admin1.gpkg - a clip of the Natural Earth Data states and provinces data for the US and Canada (I'm going to refer to these as "states" for simplicity, but I want to acknowledge that this includes Canadian provinces as well.)
+ * **Lake Monsters** - LakeMonsters.gpkg - locations of lake monsters; global distribution
+ * **Lakes** - Lakes_GreatLakes-Area.gpkg - a clip of the Natural Earth Data lakes dataset for the Great Lakes and areas adjacent
+ * **States** - US_CAN_Admin1.gpkg - a clip of the Natural Earth Data states and provinces data for the US and Canada (I'm going to refer to these as "states" for simplicity, but I want to acknowledge that this includes Canadian provinces as well.)
 
 Geopackage (.gpkg) is a single file, open vector format. We're using it today because it's one file per dataset (unlike Shapefile), which makes data management so much easier. See the README.txt file that comes with the data download for more details and sources of the data.
 
@@ -22,20 +22,23 @@ We'll be working with an international dataset of locations of lake monsters, th
 
 This is the folder structure this workshop will assume you have:
 
-workshop_maps_in_r/
+:::{.callout-note}
+##### Directory Structure
 
-└── data/
-     
-	 └── LakeMonsters.gpkg
-     
-	 └── Lakes_GreatLakes-Area.gpkg	 
-     
-	 └── README.txt
-     
-	 └── US_CAN_Admin1.gpkg	 
+**workshop_maps_in_r**/
 
-└── output/
+└── **data**/
+     
+	     └── LakeMonsters.gpkg
+     
+	     └── Lakes_GreatLakes-Area.gpkg	 
+     
+	     └── README.txt
+     
+	     └── US_CAN_Admin1.gpkg	 
 
+└── **output**/
+:::
 
 ## Map Details
 
