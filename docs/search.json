@@ -114,7 +114,7 @@
     "href": "chapters/tmap.html",
     "title": "3  tmap",
     "section": "",
-    "text": "3.1 Intro to plot()\nplot(monsters)",
+    "text": "3.1 Simple Map\ntmap is a popular package for making maps. It uses the concepts of a Grammar of Graphics to layer data as well as visuzalization rules. If you’re familiar with the ggplot2 package, this will feel similar. If you’re not familiar with ggplot2 (or not a fan), that’s ok because tmap uses layers in much the same way we just built maps using the base R plot() function.\nFirst, we load the libraries we’ll need:\n#install.packages(\"tmap\")\n  library(\"tmap\")\n\nWarning: package 'tmap' was built under R version 4.4.3\nGrammar of Graphics tools typically follow a pattern: first you indicate which data you want to work with, then you indicate the way the data should be styled. Let’s map the states data to see a basic no-frills example:\ntm_shape(states) +  #the data we want to map\n    tm_polygons()     #style the data using the defaults",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>tmap</span>"
     ]
@@ -194,7 +194,7 @@
     "href": "chapters/Additional_Resources.html#other-mapping-in-r-tutorials",
     "title": "4  Additional Resources",
     "section": "4.3 Other Mapping in R Tutorials",
-    "text": "4.3 Other Mapping in R Tutorials\nPlotting Simple Features\nNCEAS R Color Cheatsheet\nMaking beautiful inset maps in R using sf, ggplot2 and cowplot",
+    "text": "4.3 Other Mapping in R Tutorials\nPlotting Simple Features\nNCEAS R Color Cheatsheet\nMaking beautiful inset maps in R using sf, ggplot2 and cowplot\ntmap website",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Additional Resources</span>"
     ]

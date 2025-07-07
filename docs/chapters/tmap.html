@@ -186,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#intro-to-plot" id="toc-intro-to-plot" class="nav-link active" data-scroll-target="#intro-to-plot"><span class="header-section-number">3.1</span> Intro to plot()</a></li>
+  <li><a href="#simple-map" id="toc-simple-map" class="nav-link active" data-scroll-target="#simple-map"><span class="header-section-number">3.1</span> Simple Map</a></li>
   <li><a href="#multiple-layers" id="toc-multiple-layers" class="nav-link" data-scroll-target="#multiple-layers"><span class="header-section-number">3.2</span> Multiple Layers</a></li>
   <li><a href="#styling" id="toc-styling" class="nav-link" data-scroll-target="#styling"><span class="header-section-number">3.3</span> Styling</a></li>
   <li><a href="#add-text-labels" id="toc-add-text-labels" class="nav-link" data-scroll-target="#add-text-labels"><span class="header-section-number">3.4</span> Add Text Labels</a></li>
@@ -217,14 +217,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="intro-to-plot" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="intro-to-plot"><span class="header-section-number">3.1</span> Intro to plot()</h2>
+<p><a href="https://r-tmap.github.io/tmap/">tmap</a> is a popular package for making maps. It uses the concepts of a Grammar of Graphics to layer data as well as visuzalization rules. If you’re familiar with the <code>ggplot2</code> package, this will feel similar. If you’re not familiar with <code>ggplot2</code> (or not a fan), that’s ok because <code>tmap</code> uses layers in much the same way we just built maps using the base R <code>plot()</code> function.</p>
+<section id="simple-map" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="simple-map"><span class="header-section-number">3.1</span> Simple Map</h2>
+<p>First, we load the libraries we’ll need:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(monsters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">#install.packages("tmap")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(<span class="st">"tmap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tmap' was built under R version 4.4.3</code></pre>
+</div>
+</div>
+<p>Grammar of Graphics tools typically follow a pattern: first you indicate which data you want to work with, then you indicate the way the data should be styled. Let’s map the states data to see a basic no-frills example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_shape</span>(states) <span class="sc">+</span>  <span class="co">#the data we want to map</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_polygons</span>()     <span class="co">#style the data using the defaults</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tmap_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tmap_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
