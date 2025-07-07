@@ -1,0 +1,38 @@
+
+```{r echo = FALSE, output = FALSE}
+  # Quarto can't see the variables from previous chapters [commentary withheld] so we need to run a script that will load the data invisibly	
+  source("r/load_data.R")
+```
+
+# tmap
+
+## Intro to plot()
+
+
+
+```{r echo = TRUE}
+	plot(monsters)
+```
+
+
+
+## Multiple Layers
+
+
+
+## Styling
+
+The goal of styling our data is to help it communicate better. Open circles on top of state outlines are definitely difficult to understand. Let's change the plotting arguments to make something more readable and to fit the story we want to tell.
+
+
+## Add Text Labels
+
+Let's add some text labels so we know what the names of each of the monsters are. 
+
+## North Arrow & Scale Bar
+
+
+
+## Summary
+
+We've seen that 
