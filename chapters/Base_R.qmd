@@ -90,13 +90,52 @@ Most of the plotting arguments will need to be set in the first plot. The argume
        cex = 1.5,               #set symbol size
        add=TRUE)
   
+  
+```
+
+## Add Text Labels
+
+Let's add some text labels so we know what the names of each of the monsters are. We can keep the same code to make the plots, but we need to add a call to the function `text()` at the end to write the text labels on top of the rest of the map.
+
+```{r echo = TRUE}
+
+  #create a bounding box object for the zoom area of our map
+  aoi <- st_bbox(c(xmin = -89, xmax = -80, ymax = 49, ymin = 40), crs = st_crs(4326))
+
+
+  plot(
+    st_geometry(states),       
+    col="white",               
+    border="gray30",           
+    extent=aoi,                
+    bg="lightblue3"            
+    )	
+
+  plot(st_geometry(lakes), 
+       col="lightblue",
+       border="lightblue4",
+       lwd=1.5,                 
+       add=TRUE)
+	
+
+  plot(st_geometry(monsters), 
+       pch = 19,               
+       cex = 1.5,              
+       add=TRUE)
+  
   text(monsters,               #locations
        monsters$Name,          #labels
        cex = 0.75,             #scale for the characters (text)
-       pos = 1)                #1=below, 2=left, 3=above, 4=right
+       pos = 1)                #text position: 1=below, 2=left, 3=above, 4=right
   
   
 
 ```
-
 We don't have much control over label placement with base `plot()` or the graphic's final dimensions. If you want to edit this with more control, you could export a pdf file and edit it with a vector illustration software like Inkscape or Adobe Illustrator.
+
+## North Arrow & Scale Bar
+
+The base `plot()` function isn't really designed to make publication-ready maps. Adding a scale bar and north arrow are not really in the scope of this particular work flow so we'll skip that here. However, the map we made probably doesn't need those things if our audience is familiar with the Great Lakes area because they map itself would convey a sense of scale and orientation.
+
+## Summary
+We've seen that we can create a map quickly using `plot()` that communicates clearly what each layer contains. We have some basic options for controlling the style of the map, but to make a profession-quality map, we probably need a package specifically designed to make maps. We'll cover other map making packages in subsequent sections.
