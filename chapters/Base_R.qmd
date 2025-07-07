@@ -46,8 +46,55 @@ We've seen that using `plot()` to visualize a single layer can be a quick way to
 You might have noticed that each time we call the `plot()` function, the previous data we plotted disappears. So how can we show more than one layer on the same plot? `plot()` has an argument called `add` that is boolean (either `TRUE` or `FALSE`) and the default is set to `FALSE`. If we specify `TRUE`, we can add multiple layers to the same plot. It draws the plots in order, so whatever we want to be the lowest layer, we need to plot that first. Let's try plotting the monsters (points) over the states layer (polygons):
 
 ```{r echo = TRUE}
-  plot(st_geometry(states), add=FALSE)	
+  plot(st_geometry(states))	
 	plot(st_geometry(monsters), add=TRUE)
 
 ```
+Ok! We've got two layers on the same set of axes! Yes, it's hard to read, but we can fix that next.
 
+## Styling
+
+The goal of styling our data is to help it communicate better. Open circles on top of state outlines are definitely difficult to understand. Let's change the plotting arguments to make something more readable and to fit the story we want to tell.
+
+How do we know what arguments are available to us?  We can reference the documentation for the sf package's version of plot [here](https://r-spatial.github.io/sf/reference/plot.html) or you can type `?plot` into your RStudio console and pick the sf version of the help for plot in the Help panel.
+
+Most of the plotting arguments will need to be set in the first plot. The arguments in subsequent plots will just style the data.
+
+```{r echo = TRUE}
+
+  #create a bounding box object for the zoom area of our map
+  aoi <- st_bbox(c(xmin = -89, xmax = -80, ymax = 49, ymin = 40), crs = st_crs(4326))
+
+
+  plot(
+    st_geometry(states),      #plot the shape of the states
+    col="white",              #fill color for the polygons (states)
+    border="gray30",             #line color for the polygons (states)
+    
+    #xlim=c(-89, -80),         #set the limit of the x axis (longitude)
+    #ylim=c(40, 49),           #set the limit of the y axis (latitude)
+    extent=aoi,                #set the map extent to our AOI bounding box
+    #axes=TRUE,               #makes ticks with lat/long coords... kinda messy
+    bg="lightblue3"           #set the color behind the states (the ocean)
+    )	
+
+  plot(st_geometry(lakes), 
+       col="lightblue",
+       border="lightblue4",
+       lwd=1.5,                 #set line weight
+       add=TRUE)
+	
+
+  plot(st_geometry(monsters), 
+       pch = 19,               #set the points to filled circles
+       cex = 1.5,               #set symbol size
+       add=TRUE)
+  
+  text(monsters, 
+       monsters$Name,
+       cex = 0.75,
+       pos = 1)                #1=below, 2=left, 3=above, 4=right
+  
+  
+
+```
