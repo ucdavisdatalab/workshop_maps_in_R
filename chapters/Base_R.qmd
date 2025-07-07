@@ -6,6 +6,8 @@
 
 # Base R
 
+## Intro to plot()
+
 R comes with tools to create basic graphs like scatter plots. Many spatial data packages extend these tools to work with spatial data, allowing us to use the `plot()` function to visualize spatial data in map form.  This is often a quick and convenient way to visualize your data to check results.
 
 It seems pretty intuitive, but let's look at what happens if we use the plot command to plot our monsters data:
@@ -14,7 +16,7 @@ It seems pretty intuitive, but let's look at what happens if we use the plot com
 	plot(monsters)
 ```
 
-Whoops! What happened? If we don't specify which column in the attribute table to plot, plot() tries to plot all of them sequentially. If you have a large dataset, this can take a while and it's almost never what we actually want.
+Whoops! What happened? If we don't specify which column in the attribute table to plot, `plot()` tries to plot all of them sequentially. If you have a large dataset, this can take a while and it's almost never what we actually want.
 
 Let's just plot the shapes without any data. We can do this by specifying that we want to plot the geometry column. In this case, it's called "geom".
 
@@ -23,9 +25,24 @@ Let's just plot the shapes without any data. We can do this by specifying that w
   plot(monsters["geom"])
 ```
 
+We can see the distribution of the data and if you use your imagination, you might be able to make out the general shapes of the continents.
+
 Let's plot them by marker type: 
 
 ```{r echo = TRUE}
 	plot(monsters["marker"])
+```
+
+That's pretty rough, but it gives us an idea of how the marker (animal forms) are distributed in the dataset.
+
+## Multiple Layers
+
+We've seen that using `plot()` to visualize a single layer can be a quick way to make sure a data set contains what we think it does, but sometimes we need more context.
+
+You might have noticed that each time we call the `plot()` function, the previous data we plotted disappears. So how can we show more than one layer on the same plot? `plot()` has an argument called `add` that is boolean (either `TRUE` or `FALSE`) and the default is set to `FALSE`. If we specify `TRUE`, we can add multiple layers to the same plot. It draws the plots in order, so whatever we want to be the lowest layer, we need to plot that first. Let's try plotting the monsters (points) over the states layer (polygons):
+
+```{r echo = TRUE}
+	plot(states["geom"])
+	plot(monsters["geom"], add=TRUE)
 ```
 
