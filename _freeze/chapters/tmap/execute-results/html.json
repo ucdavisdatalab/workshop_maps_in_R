@@ -1,0 +1,17 @@
+{
+  "hash": "d5b26420741afec1bfd28b133cf7cf73",
+  "result": {
+    "engine": "knitr",
+    "markdown": "::: {.cell}\n\n:::\n\n\n\n\n# tmap\n\n## Intro to plot()\n\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n\tplot(monsters)\n```\n\n::: {.cell-output-display}\n![](tmap_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n\n\n\n\n\n\n## Multiple Layers\n\n\n\n## Styling\n\nThe goal of styling our data is to help it communicate better. Open circles on top of state outlines are definitely difficult to understand. Let's change the plotting arguments to make something more readable and to fit the story we want to tell.\n\n\n## Add Text Labels\n\nLet's add some text labels so we know what the names of each of the monsters are. \n\n## North Arrow & Scale Bar\n\n\n\n## Summary\n\nWe've seen that ",
+    "supporting": [
+      "tmap_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
