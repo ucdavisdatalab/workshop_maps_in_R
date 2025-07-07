@@ -74,7 +74,37 @@
     "href": "chapters/Base_R.html#styling",
     "title": "2  Base R",
     "section": "2.3 Styling",
-    "text": "2.3 Styling\nThe goal of styling our data is to help it communicate better. Open circles on top of state outlines are definitely difficult to understand. Let’s change the plotting arguments to make something more readable and to fit the story we want to tell.\nHow do we know what arguments are available to us? We can reference the documentation for the sf package’s version of plot here or you can type ?plot into your RStudio console and pick the sf version of the help for plot in the Help panel.\nMost of the plotting arguments will need to be set in the first plot. The arguments in subsequent plots will just style the data.\n\n  #create a bounding box object for the zoom area of our map\n  aoi &lt;- st_bbox(c(xmin = -89, xmax = -80, ymax = 49, ymin = 40), crs = st_crs(4326))\n\n\n  plot(\n    st_geometry(states),       #plot the shape of the states\n    col=\"white\",               #fill color for the polygons (states)\n    border=\"gray30\",           #line color for the polygons (states)\n    \n    #xlim=c(-89, -80),         #set the limit of the x axis (longitude)\n    #ylim=c(40, 49),           #set the limit of the y axis (latitude)\n    extent=aoi,                #set the map extent to our AOI bounding box\n    #axes=TRUE,                #makes ticks with lat/long coords... kinda messy\n    bg=\"lightblue3\"            #set the color behind the states (the ocean)\n    )   \n\n  plot(st_geometry(lakes), \n       col=\"lightblue\",\n       border=\"lightblue4\",\n       lwd=1.5,                 #set line weight\n       add=TRUE)\n    \n\n  plot(st_geometry(monsters), \n       pch = 19,               #set the points to filled circles\n       cex = 1.5,               #set symbol size\n       add=TRUE)\n  \n  text(monsters,               #locations\n       monsters$Name,          #labels\n       cex = 0.75,             #scale for the characters (text)\n       pos = 1)                #1=below, 2=left, 3=above, 4=right\n\n\n\n\n\n\n\n\nWe don’t have much control over label placement with base plot() or the graphic’s final dimensions. If you want to edit this with more control, you could export a pdf file and edit it with a vector illustration software like Inkscape or Adobe Illustrator.",
+    "text": "2.3 Styling\nThe goal of styling our data is to help it communicate better. Open circles on top of state outlines are definitely difficult to understand. Let’s change the plotting arguments to make something more readable and to fit the story we want to tell.\nHow do we know what arguments are available to us? We can reference the documentation for the sf package’s version of plot here or you can type ?plot into your RStudio console and pick the sf version of the help for plot in the Help panel.\nMost of the plotting arguments will need to be set in the first plot. The arguments in subsequent plots will just style the data.\n\n  #create a bounding box object for the zoom area of our map\n  aoi &lt;- st_bbox(c(xmin = -89, xmax = -80, ymax = 49, ymin = 40), crs = st_crs(4326))\n\n\n  plot(\n    st_geometry(states),       #plot the shape of the states\n    col=\"white\",               #fill color for the polygons (states)\n    border=\"gray30\",           #line color for the polygons (states)\n    \n    #xlim=c(-89, -80),         #set the limit of the x axis (longitude)\n    #ylim=c(40, 49),           #set the limit of the y axis (latitude)\n    extent=aoi,                #set the map extent to our AOI bounding box\n    #axes=TRUE,                #makes ticks with lat/long coords... kinda messy\n    bg=\"lightblue3\"            #set the color behind the states (the ocean)\n    )   \n\n  plot(st_geometry(lakes), \n       col=\"lightblue\",\n       border=\"lightblue4\",\n       lwd=1.5,                 #set line weight\n       add=TRUE)\n    \n\n  plot(st_geometry(monsters), \n       pch = 19,               #set the points to filled circles\n       cex = 1.5,               #set symbol size\n       add=TRUE)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Base R</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Base_R.html#add-text-labels",
+    "href": "chapters/Base_R.html#add-text-labels",
+    "title": "2  Base R",
+    "section": "2.4 Add Text Labels",
+    "text": "2.4 Add Text Labels\nLet’s add some text labels so we know what the names of each of the monsters are. We can keep the same code to make the plots, but we need to add a call to the function text() at the end to write the text labels on top of the rest of the map.\n\n  #create a bounding box object for the zoom area of our map\n  aoi &lt;- st_bbox(c(xmin = -89, xmax = -80, ymax = 49, ymin = 40), crs = st_crs(4326))\n\n\n  plot(\n    st_geometry(states),       \n    col=\"white\",               \n    border=\"gray30\",           \n    extent=aoi,                \n    bg=\"lightblue3\"            \n    )   \n\n  plot(st_geometry(lakes), \n       col=\"lightblue\",\n       border=\"lightblue4\",\n       lwd=1.5,                 \n       add=TRUE)\n    \n\n  plot(st_geometry(monsters), \n       pch = 19,               \n       cex = 1.5,              \n       add=TRUE)\n  \n  text(monsters,               #locations\n       monsters$Name,          #labels\n       cex = 0.75,             #scale for the characters (text)\n       pos = 1)                #text position: 1=below, 2=left, 3=above, 4=right\n\n\n\n\n\n\n\n\nWe don’t have much control over label placement with base plot() or the graphic’s final dimensions. If you want to edit this with more control, you could export a pdf file and edit it with a vector illustration software like Inkscape or Adobe Illustrator.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Base R</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Base_R.html#north-arrow-scale-bar",
+    "href": "chapters/Base_R.html#north-arrow-scale-bar",
+    "title": "2  Base R",
+    "section": "2.5 North Arrow & Scale Bar",
+    "text": "2.5 North Arrow & Scale Bar\nThe base plot() function isn’t really designed to make publication-ready maps. Adding a scale bar and north arrow are not really in the scope of this particular work flow so we’ll skip that here. However, the map we made probably doesn’t need those things if our audience is familiar with the Great Lakes area because they map itself would convey a sense of scale and orientation.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Base R</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Base_R.html#summary",
+    "href": "chapters/Base_R.html#summary",
+    "title": "2  Base R",
+    "section": "2.6 Summary",
+    "text": "2.6 Summary\nWe’ve seen that we can create a map quickly using plot() that communicates clearly what each layer contains. We have some basic options for controlling the style of the map, but to make a profession-quality map, we probably need a package specifically designed to make maps. We’ll cover other map making packages in subsequent sections.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Base R</span>"
     ]
