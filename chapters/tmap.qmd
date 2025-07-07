@@ -27,11 +27,43 @@ Grammar of Graphics tools typically follow a pattern: first you indicate which d
 
 ## Multiple Layers
 
+With `tmap`, if we want to add multiple layers to the map, we can think of each layer as a separate map that we stack together. For our map, we'll first make the layer that contains the states, then we'll add a layer that contains the lakes, then a final layer that contains the monsters.
 
+```{r echo = TRUE}
+	map_states <- tm_shape(states) +  
+    tm_polygons() 
+
+  map_lakes <- map_states +         #start with the states map
+    tm_shape(lakes) +               #add the lakes data
+    tm_polygons()                   #style the lakes data
+  
+  map_monsters <- map_lakes +       #start with the lakes map
+    tm_shape(monsters) +            #add the monsters data
+    tm_dots()                       #style the monsters data
+  
+  map_monsters                      #call the map variable to plot the map inside it
+```
 
 ## Styling
 
-The goal of styling our data is to help it communicate better. Open circles on top of state outlines are definitely difficult to understand. Let's change the plotting arguments to make something more readable and to fit the story we want to tell.
+The goal of styling our data is to help it communicate better. Dots on top of state outlines are definitely difficult to understand. Let's change the plotting arguments to make something more readable and to fit the story we want to tell.
+
+```{r echo = TRUE}
+	map_states <- tm_shape(states) +  
+    tm_polygons(
+      fill="white", col="gray30"
+    ) 
+
+  map_lakes <- map_states +         
+    tm_shape(lakes) +               
+    tm_polygons(fill = "lightblue", col="lightblue4")                   
+  
+  map_monsters <- map_lakes +       
+    tm_shape(monsters) +            
+    tm_dots()                       
+  
+  map_monsters                      
+```
 
 
 ## Add Text Labels
