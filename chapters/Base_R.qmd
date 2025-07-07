@@ -67,15 +67,15 @@ Most of the plotting arguments will need to be set in the first plot. The argume
 
 
   plot(
-    st_geometry(states),      #plot the shape of the states
-    col="white",              #fill color for the polygons (states)
-    border="gray30",             #line color for the polygons (states)
+    st_geometry(states),       #plot the shape of the states
+    col="white",               #fill color for the polygons (states)
+    border="gray30",           #line color for the polygons (states)
     
     #xlim=c(-89, -80),         #set the limit of the x axis (longitude)
     #ylim=c(40, 49),           #set the limit of the y axis (latitude)
     extent=aoi,                #set the map extent to our AOI bounding box
-    #axes=TRUE,               #makes ticks with lat/long coords... kinda messy
-    bg="lightblue3"           #set the color behind the states (the ocean)
+    #axes=TRUE,                #makes ticks with lat/long coords... kinda messy
+    bg="lightblue3"            #set the color behind the states (the ocean)
     )	
 
   plot(st_geometry(lakes), 
@@ -90,11 +90,13 @@ Most of the plotting arguments will need to be set in the first plot. The argume
        cex = 1.5,               #set symbol size
        add=TRUE)
   
-  text(monsters, 
-       monsters$Name,
-       cex = 0.75,
+  text(monsters,               #locations
+       monsters$Name,          #labels
+       cex = 0.75,             #scale for the characters (text)
        pos = 1)                #1=below, 2=left, 3=above, 4=right
   
   
 
 ```
+
+We don't have much control over label placement with base `plot()` or the graphic's final dimensions. If you want to edit this with more control, you could export a pdf file and edit it with a vector illustration software like Inkscape or Adobe Illustrator.
