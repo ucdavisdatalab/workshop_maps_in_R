@@ -175,8 +175,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#intro-to-plot" id="toc-intro-to-plot" class="nav-link active" data-scroll-target="#intro-to-plot"><span class="header-section-number">2.1</span> Intro to plot()</a></li>
+  <li><a href="#multiple-layers" id="toc-multiple-layers" class="nav-link" data-scroll-target="#multiple-layers"><span class="header-section-number">2.2</span> Multiple Layers</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/blob/main/chapters/Base_R.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -200,6 +207,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="intro-to-plot" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="intro-to-plot"><span class="header-section-number">2.1</span> Intro to plot()</h2>
 <p>R comes with tools to create basic graphs like scatter plots. Many spatial data packages extend these tools to work with spatial data, allowing us to use the <code>plot()</code> function to visualize spatial data in map form. This is often a quick and convenient way to visualize your data to check results.</p>
 <p>It seems pretty intuitive, but let’s look at what happens if we use the plot command to plot our monsters data:</p>
 <div class="cell">
@@ -212,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Whoops! What happened? If we don’t specify which column in the attribute table to plot, plot() tries to plot all of them sequentially. If you have a large dataset, this can take a while and it’s almost never what we actually want.</p>
+<p>Whoops! What happened? If we don’t specify which column in the attribute table to plot, <code>plot()</code> tries to plot all of them sequentially. If you have a large dataset, this can take a while and it’s almost never what we actually want.</p>
 <p>Let’s just plot the shapes without any data. We can do this by specifying that we want to plot the geometry column. In this case, it’s called “geom”.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">#plot(monsters$geom)  #this option also works in this situation</span></span>
@@ -225,6 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>We can see the distribution of the data and if you use your imagination, you might be able to make out the general shapes of the continents.</p>
 <p>Let’s plot them by marker type:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(monsters[<span class="st">"marker"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -236,8 +246,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>That’s pretty rough, but it gives us an idea of how the marker (animal forms) are distributed in the dataset.</p>
+</section>
+<section id="multiple-layers" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="multiple-layers"><span class="header-section-number">2.2</span> Multiple Layers</h2>
+<p>We’ve seen that using <code>plot()</code> to visualize a single layer can be a quick way to make sure a data set contains what we think it does, but sometimes we need more context.</p>
+<p>You might have noticed that each time we call the <code>plot()</code> function, the previous data we plotted disappears. So how can we show more than one layer on the same plot? <code>plot()</code> has an argument called <code>add</code> that is boolean (either <code>TRUE</code> or <code>FALSE</code>) and the default is set to <code>FALSE</code>. If we specify <code>TRUE</code>, we can add multiple layers to the same plot. It draws the plots in order, so whatever we want to be the lowest layer, we need to plot that first. Let’s try plotting the monsters (points) over the states layer (polygons):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(states[<span class="st">"geom"</span>])</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(monsters[<span class="st">"geom"</span>], <span class="at">add=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Base_R_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -674,4 +702,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/blob/main/chapters/Base_R.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/blob/main/chapters/Base_R.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

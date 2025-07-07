@@ -54,7 +54,17 @@
     "href": "chapters/Base_R.html",
     "title": "2  Base R",
     "section": "",
-    "text": "R comes with tools to create basic graphs like scatter plots. Many spatial data packages extend these tools to work with spatial data, allowing us to use the plot() function to visualize spatial data in map form. This is often a quick and convenient way to visualize your data to check results.\nIt seems pretty intuitive, but let’s look at what happens if we use the plot command to plot our monsters data:\n\n    plot(monsters)\n\n\n\n\n\n\n\n\nWhoops! What happened? If we don’t specify which column in the attribute table to plot, plot() tries to plot all of them sequentially. If you have a large dataset, this can take a while and it’s almost never what we actually want.\nLet’s just plot the shapes without any data. We can do this by specifying that we want to plot the geometry column. In this case, it’s called “geom”.\n\n    #plot(monsters$geom)  #this option also works in this situation\n  plot(monsters[\"geom\"])\n\n\n\n\n\n\n\n\nLet’s plot them by marker type:\n\n    plot(monsters[\"marker\"])",
+    "text": "2.1 Intro to plot()\nR comes with tools to create basic graphs like scatter plots. Many spatial data packages extend these tools to work with spatial data, allowing us to use the plot() function to visualize spatial data in map form. This is often a quick and convenient way to visualize your data to check results.\nIt seems pretty intuitive, but let’s look at what happens if we use the plot command to plot our monsters data:\nplot(monsters)\nWhoops! What happened? If we don’t specify which column in the attribute table to plot, plot() tries to plot all of them sequentially. If you have a large dataset, this can take a while and it’s almost never what we actually want.\nLet’s just plot the shapes without any data. We can do this by specifying that we want to plot the geometry column. In this case, it’s called “geom”.\n#plot(monsters$geom)  #this option also works in this situation\n  plot(monsters[\"geom\"])\nWe can see the distribution of the data and if you use your imagination, you might be able to make out the general shapes of the continents.\nLet’s plot them by marker type:\nplot(monsters[\"marker\"])\nThat’s pretty rough, but it gives us an idea of how the marker (animal forms) are distributed in the dataset.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Base R</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Base_R.html#multiple-layers",
+    "href": "chapters/Base_R.html#multiple-layers",
+    "title": "2  Base R",
+    "section": "2.2 Multiple Layers",
+    "text": "2.2 Multiple Layers\nWe’ve seen that using plot() to visualize a single layer can be a quick way to make sure a data set contains what we think it does, but sometimes we need more context.\nYou might have noticed that each time we call the plot() function, the previous data we plotted disappears. So how can we show more than one layer on the same plot? plot() has an argument called add that is boolean (either TRUE or FALSE) and the default is set to FALSE. If we specify TRUE, we can add multiple layers to the same plot. It draws the plots in order, so whatever we want to be the lowest layer, we need to plot that first. Let’s try plotting the monsters (points) over the states layer (polygons):\n\n    plot(states[\"geom\"])\n    plot(monsters[\"geom\"], add=TRUE)",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Base R</span>"
     ]

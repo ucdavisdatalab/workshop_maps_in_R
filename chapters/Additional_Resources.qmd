@@ -16,3 +16,7 @@ DataLab's [Spatial Data Formats Workshop](https://ucdavisdatalab.github.io/works
 DataLab's [R Basics Workshop](https://ucdavisdatalab.github.io/workshop_r_basics/)
 
 [Davis R Users Group](https://d-rug.github.io/) - a welcoming community of practice focused on using the R programming language
+
+## Other Mapping in R Tutorials
+
+[Plotting Simple Features](https://r-spatial.github.io/sf/articles/sf5.html)
