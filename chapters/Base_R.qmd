@@ -63,7 +63,7 @@ Most of the plotting arguments will need to be set in the first plot. The argume
 ```{r echo = TRUE}
 
   #create a bounding box object for the zoom area of our map
-  aoi <- st_bbox(c(xmin = -89, xmax = -80, ymax = 49, ymin = 40), crs = st_crs(4326))
+  aoi <- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))
 
 
   plot(
@@ -92,6 +92,9 @@ Most of the plotting arguments will need to be set in the first plot. The argume
   
   
 ```
+
+One thing to notice here is that `plot()` is not adhering strictly to our bounding box. It seems be be padding the area of the map on the east and west sides. If we really need out map to conform to the bounding box, clip the input layers with the bounding box.
+
 
 ## Add Text Labels
 
