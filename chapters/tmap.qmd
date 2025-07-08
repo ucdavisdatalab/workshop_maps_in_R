@@ -157,8 +157,52 @@ One big benefit of the `tmap` workflow is the built in option to add norh arrows
   map_monsters                      
 ```
 
+# Ready-Made Tile Services
 
+Another benefit of the `tmap` workflow is the easy availability of using tile services (commonly known as "basemaps" but people use that term to mean so many other things as well). Tile services are continuous map layers that are stored in square chunks (tiles) so you only need to load the part of the world in your area of interest. One tile service that may people are familiar with is Google Maps, but open data like OpenStreetMap is also available as a tile service.
+
+Remember that even if a tile service makes a dataset easy to use, you still need to comply with the terms of service for that specific dataset.
+
+Let's replace our base layers (states and lakes) with the default basemap.
+
+```{r echo = TRUE}
+
+  #create a bounding box object for the zoom area of our map
+  aoi <- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))
+
+
+	  map_monsters <-  
+	    tm_basemap() +                       #start with the default base map
+      tm_shape(monsters, bbox = aoi) +     #move the bounding box parameter here
+      tm_dots(size=.5) +
+    
+      tm_compass(position=c("left", "bottom")) +     
+      tm_scalebar(position=c("left", "bottom"))      
+    
+  
+  map_monsters                      
+```
+
+What about a base layer with some more color or labels? Let's add the OpenStreetMap tile service.
+
+```{r echo = TRUE}
+
+  #create a bounding box object for the zoom area of our map
+  aoi <- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))
+
+
+	  map_monsters <-  
+	    tm_basemap("OpenStreetMap") +                       #start with the default base map
+      tm_shape(monsters, bbox = aoi) +     
+      tm_dots(size=.5) +
+    
+      tm_compass(position=c("left", "bottom")) +     
+      tm_scalebar(position=c("left", "bottom"))      
+    
+  
+  map_monsters                      
+```
 
 ## Summary
 
-We've seen that 
+We've seen that we can build a map in layers using `tmap` in a similar manner to the workflow we used in the base `plot()` workflow.  `tmap` has more built-in features for composing maps and finer control over some aspects of maps like north arrows and scale bars. It also has built-in base map tools which makes making a map quick.  But `tmap` still doesn't have an easy way to deal with label placement.
