@@ -308,9 +308,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="add-text-labels" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="add-text-labels"><span class="header-section-number">3.4</span> Add Text Labels</h2>
 <p>Let’s add some text labels so we know what the names of each of the monsters are.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#create a bounding box object for the zoom area of our map</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  aoi <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">c</span>(<span class="at">xmin =</span> <span class="sc">-</span><span class="dv">96</span>, <span class="at">xmax =</span> <span class="sc">-</span><span class="dv">73</span>, <span class="at">ymax =</span> <span class="dv">50</span>, <span class="at">ymin =</span> <span class="dv">40</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    map_states <span class="ot">&lt;-</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tm_shape</span>(states, </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">bbox =</span> aoi) <span class="sc">+</span>                    </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_polygons</span>(</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill=</span><span class="st">"white"</span>,                     </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">col=</span><span class="st">"gray30"</span>) <span class="sc">+</span>                   </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_layout</span>(<span class="at">bg.color=</span><span class="st">"lightblue3"</span>)    </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    map_lakes <span class="ot">&lt;-</span> map_states <span class="sc">+</span>         </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_shape</span>(lakes) <span class="sc">+</span>               </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_polygons</span>(</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> <span class="st">"lightblue"</span>,               </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">col=</span><span class="st">"lightblue4"</span>                  </span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>      )                   </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  map_monsters <span class="ot">&lt;-</span> map_lakes <span class="sc">+</span>       </span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_shape</span>(monsters) <span class="sc">+</span>            </span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_dots</span>(<span class="at">size=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_text</span>(<span class="st">"Name"</span>)             <span class="co">#create labels, specifying the column to use</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  map_monsters                      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tmap_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Labeling of points is challenging for <code>tmap</code>. It doesn’t have a way to avoid label collisions (overlaps) and the placement options don’t really do much to avoid labels running over the symbols. I also haven’t found much guidance on placing the labels. Most of the tutorials avoid this problem by labeling polygons where the exact placement isn’t a concern. Like the discussion of <code>plot()</code>, this map would benefit from moving the labels by hand. Export a pdf and edit it in a vector illustration software like Inkscape or Adobe Illustrator.</p>
 </section>
 <section id="north-arrow-scale-bar" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="north-arrow-scale-bar"><span class="header-section-number">3.5</span> North Arrow &amp; Scale Bar</h2>
+<p>One big benefit of the <code>tmap</code> workflow is the built in option to add norh arrows and scale bars. Adding them in is super simple and if you’re happy with the defaults, it’s pretty quick. We’ll put ours in the lower left corner where they won’t cover up our monster points. Also, we’re adding these to the last layer of the map we built so that the arrow and scale bar don’t get covered up by anything else. (Note I’m taking out the labels because they are messy.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#create a bounding box object for the zoom area of our map</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  aoi <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">c</span>(<span class="at">xmin =</span> <span class="sc">-</span><span class="dv">96</span>, <span class="at">xmax =</span> <span class="sc">-</span><span class="dv">73</span>, <span class="at">ymax =</span> <span class="dv">50</span>, <span class="at">ymin =</span> <span class="dv">40</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    map_states <span class="ot">&lt;-</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tm_shape</span>(states, </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">bbox =</span> aoi) <span class="sc">+</span>                    </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_polygons</span>(</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill=</span><span class="st">"white"</span>,                     </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">col=</span><span class="st">"gray30"</span>) <span class="sc">+</span>                   </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_layout</span>(<span class="at">bg.color=</span><span class="st">"lightblue3"</span>)    </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    map_lakes <span class="ot">&lt;-</span> map_states <span class="sc">+</span>         </span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_shape</span>(lakes) <span class="sc">+</span>               </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_polygons</span>(</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> <span class="st">"lightblue"</span>,               </span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">col=</span><span class="st">"lightblue4"</span>                  </span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>      )                   </span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  map_monsters <span class="ot">&lt;-</span> map_lakes <span class="sc">+</span>       </span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_shape</span>(monsters) <span class="sc">+</span>            </span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_dots</span>(<span class="at">size=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_compass</span>(<span class="at">position=</span><span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"bottom"</span>)) <span class="sc">+</span>     <span class="co">#add the north arrow (compass rose)</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_scalebar</span>(<span class="at">position=</span><span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"bottom"</span>))      <span class="co">#add the scale bar</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  map_monsters                      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tmap_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="summary" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.6</span> Summary</h2>
