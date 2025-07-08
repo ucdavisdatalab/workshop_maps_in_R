@@ -163,8 +163,8 @@
     "objectID": "chapters/tmap.html#summary",
     "href": "chapters/tmap.html#summary",
     "title": "3  tmap",
-    "section": "3.6 Summary",
-    "text": "3.6 Summary\nWe’ve seen that",
+    "section": "4.1 Summary",
+    "text": "4.1 Summary\nWe’ve seen that we can build a map in layers using tmap in a similar manner to the workflow we used in the base plot() workflow. tmap has more built-in features for composing maps and finer control over some aspects of maps like north arrows and scale bars. It also has built-in base map tools which makes making a map quick. But tmap still doesn’t have an easy way to deal with label placement.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>tmap</span>"
     ]
