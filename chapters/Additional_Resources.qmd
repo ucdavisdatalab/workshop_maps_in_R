@@ -26,3 +26,7 @@ DataLab's [R Basics Workshop](https://ucdavisdatalab.github.io/workshop_r_basics
 [Making beautiful inset maps in R using sf, ggplot2 and cowplot](https://upgo.lab.mcgill.ca/2019/12/13/making-beautiful-maps/)
 
 [tmap website](https://r-tmap.github.io/tmap/)
+
+[Elegant and informative maps with tmap](https://r-tmap.github.io/tmap-book/index.html)
+
+[Spatial Data & R](https://mapping-in-r-workshop.ryanpeek.org/04_vig_workflow_in_r_snowdata)

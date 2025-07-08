@@ -83,7 +83,79 @@ The goal of styling our data is to help it communicate better. Dots on top of st
 
 Let's add some text labels so we know what the names of each of the monsters are. 
 
+```{r echo = TRUE}
+
+  #create a bounding box object for the zoom area of our map
+  aoi <- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))
+
+
+	map_states <- 
+	  tm_shape(states, 
+	     bbox = aoi) +                    
+	  
+    tm_polygons(
+      fill="white",                     
+      col="gray30") +                   
+    tm_layout(bg.color="lightblue3")    
+
+  
+	map_lakes <- map_states +         
+    tm_shape(lakes) +               
+    tm_polygons(
+      fill = "lightblue",               
+      col="lightblue4"                  
+      )                   
+  
+  map_monsters <- map_lakes +       
+    tm_shape(monsters) +            
+    tm_dots(size=.5) +
+    
+    tm_text("Name")             #create labels, specifying the column to use
+  
+  map_monsters                      
+```
+
+Labeling of points is challenging for `tmap`. It doesn't have a way to avoid label collisions (overlaps) and the placement options don't really do much to avoid labels running over the symbols.  I also haven't found much guidance on placing the labels.  Most of the tutorials avoid this problem by labeling polygons where the exact placement isn't a concern.  Like the discussion of `plot()`, this map would benefit from moving the labels by hand. Export a pdf and edit it in a vector illustration software like Inkscape or Adobe Illustrator.
+
+
 ## North Arrow & Scale Bar
+
+One big benefit of the `tmap` workflow is the built in option to add norh arrows and scale bars.  Adding them in is super simple and if you're happy with the defaults, it's pretty quick.  We'll put ours in the lower left corner where they won't cover up our monster points. Also, we're adding these to the last layer of the map we built so that the arrow and scale bar don't get covered up by anything else. (Note I'm taking out the labels because they are messy.)
+
+
+```{r echo = TRUE}
+
+  #create a bounding box object for the zoom area of our map
+  aoi <- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))
+
+
+	map_states <- 
+	  tm_shape(states, 
+	     bbox = aoi) +                    
+	  
+    tm_polygons(
+      fill="white",                     
+      col="gray30") +                   
+    tm_layout(bg.color="lightblue3")    
+
+  
+	map_lakes <- map_states +         
+    tm_shape(lakes) +               
+    tm_polygons(
+      fill = "lightblue",               
+      col="lightblue4"                  
+      )                   
+  
+  map_monsters <- map_lakes +       
+    tm_shape(monsters) +            
+    tm_dots(size=.5) +
+    
+    tm_compass(position=c("left", "bottom")) +     #add the north arrow (compass rose)
+    tm_scalebar(position=c("left", "bottom"))      #add the scale bar
+    
+  
+  map_monsters                      
+```
 
 
 

@@ -1,0 +1,202 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Maps in R",
+    "section": "",
+    "text": "Overview\n\n\n\n\n\n\nLearning Goals\n\n\n\nAfter completing this chapter, learners should be able to:\n\nApply popular mapping workflows to create maps with spatial data\nAssess which workflow works best in different situations\nApply cartographic best practices to a map composition in R\n\n\n\n\nWorkshop Description\nIn this workshop, participants will learn how to use several options for composing maps in R.\n\n\nSoftware & Data\nTo fully participate in this workshop, learners will need to attend to the following before the workshop:\n\nDownload and install R\nDownload and install RStudio\nDownload the workshop data and, unzip it, and store it in a location they can find such as a folder dedicated to this workshop (we do not recommend leaving it in your Downloads folder). This is the same data we use in the Cartography for Academic Publications Workshop.\n\n\n\nPrerequisites\nFor the best experience, we recommend learners have the following skills before taking this workshop:\n\nan introductory understanding of programming in R (for example, you are familiar with how to load libraries, load common data formats like a CSV, and are comfortable running basic commands). See DataLab’s R Basics Workshop for help.\nan introductory understanding of spatial data (for example, you are familiar with the difference between raster and vector data). See DataLab’s Spatial Data Formats Workshop for help.\n(recommended) review the concepts (first section) of DataLab’s Cartography for Academic Publications Workshop",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "chapters/Introduction.html",
+    "href": "chapters/Introduction.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "1.1 Data Set\nR is probably best used for cleaning and analyzing spatial data. Making good quality maps, however, takes a different set of skills.\nIf you haven’t already, download the workshop data from the online repository. If you downloaded a .zip file, unzip the data to a folder you can easily find.\nThe data we have to work with today is:\nGeopackage (.gpkg) is a single file, open vector format. We’re using it today because it’s one file per dataset (unlike Shapefile), which makes data management so much easier. See the README.txt file that comes with the data download for more details and sources of the data.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Introduction.html#data-set",
+    "href": "chapters/Introduction.html#data-set",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "Lake Monsters - LakeMonsters.gpkg - locations of lake monsters; global distribution\nLakes - Lakes_GreatLakes-Area.gpkg - a clip of the Natural Earth Data lakes dataset for the Great Lakes and areas adjacent\nStates - US_CAN_Admin1.gpkg - a clip of the Natural Earth Data states and provinces data for the US and Canada (I’m going to refer to these as “states” for simplicity, but I want to acknowledge that this includes Canadian provinces as well.)\n\n\n\n1.1.1 Data Processing\nWe’ll be working with an international dataset of locations of lake monsters, the most famous of which is arguably Nessie who supposedly lives in Loch Ness in Scotland. This dataset was assembled from Wikipedia’s List of Lake Monsters. The lake names were geocoded (you can find the R script that I wrote to process the data in the r_scripts folder of this repo, corrected, then exported to a geopackage file. Why did I process this data for you? It took a few hours to do and requires skills we are not focusing on in this workshop.\n\n\n1.1.2 Recommended File Structure\nThis is the folder structure this workshop will assume you have:\n\n\n\n\n\n\nDirectory Structure\n\n\n\nworkshop_maps_in_r/\n└── data/\n     └── LakeMonsters.gpkg\n \n     └── Lakes_GreatLakes-Area.gpkg  \n \n     └── README.txt\n \n     └── US_CAN_Admin1.gpkg  \n└── output/",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Introduction.html#map-details",
+    "href": "chapters/Introduction.html#map-details",
+    "title": "1  Introduction",
+    "section": "1.2 Map Details",
+    "text": "1.2 Map Details\nLet’s pretend we want to a map for a journal article about the underpinnings of the distribution of cryptozoology sightings in the northeastern US and southeastern Canada, focusing on lake monsters, creatures reported to live in lakes that are mainly known from folklore and typically take on the the shape of extinct or extraordinarlily large living reptiles. You want your readers to understand the relationship between the monster locations and also their location on the planet. In our imaginary scenario, we plan to submit our paper to one of the Nature journals.\nWhat’s the story? What should readers learn from this map? What data do you need to tell that story effectively?\nThe story I plan to tell is: where are these monsters reported to live in the US Great Lakes area? What are their names? For reference, what lakes and states or provinces are they in? The story you want to tell might be different, so feel free to make adjustments as needed.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Introduction.html#load-spatial-data",
+    "href": "chapters/Introduction.html#load-spatial-data",
+    "title": "1  Introduction",
+    "section": "1.3 Load Spatial Data",
+    "text": "1.3 Load Spatial Data\nOpen RStudio and create a new script file. Save it in your folder for this workshop.\nSet your working directory to your workshop folder\n\n    # set your working directory\n    \n    setwd(\"path/to/your/workshop/folder/workshop_maps_in_r\")\n\nLoad the libraries that we will need. If you have not installed these packages yet, you can do so with the command install.packages(\"PackageName\")\n\n    # load libraries\n    \n    library(sf)   # for working with spatial data\n\nLet’s load the data we’ll need.\n\n    # read spatial data\n    \n    monsters &lt;- st_read(\"data/LakeMonsters.gpkg\")\n\nReading layer `LakeMonsters' from data source \n  `C:\\Users\\mmtobias\\Documents\\GitHub\\workshop_maps_in_R\\data\\LakeMonsters.gpkg' \n  using driver `GPKG'\nSimple feature collection with 55 features and 9 fields\nGeometry type: POINT\nDimension:     XY\nBounding box:  xmin: -123.4696 ymin: -41.00612 xmax: 144.3105 ymax: 65.35767\nGeodetic CRS:  WGS 84\n\n    lakes &lt;- st_read(\"data/Lakes_GreatLakes-Area.gpkg\")\n\nReading layer `Lakes_GreatLakes-Area' from data source \n  `C:\\Users\\mmtobias\\Documents\\GitHub\\workshop_maps_in_R\\data\\Lakes_GreatLakes-Area.gpkg' \n  using driver `GPKG'\nSimple feature collection with 110 features and 10 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -101.2215 ymin: 35.93167 xmax: -64.94982 ymax: 54.41538\nGeodetic CRS:  WGS 84\n\n    states &lt;- st_read(\"data/US_CAN_Admin1.gpkg\")\n\nReading layer `US_CAN_Admin1' from data source \n  `C:\\Users\\mmtobias\\Documents\\GitHub\\workshop_maps_in_R\\data\\US_CAN_Admin1.gpkg' \n  using driver `GPKG'\nSimple feature collection with 64 features and 83 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -178.1945 ymin: 18.96391 xmax: -52.65365 ymax: 83.11611\nGeodetic CRS:  WGS 84",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Base_R.html",
+    "href": "chapters/Base_R.html",
+    "title": "2  Base R",
+    "section": "",
+    "text": "2.1 Intro to plot()\nR comes with tools to create basic graphs like scatter plots. Many spatial data packages extend these tools to work with spatial data, allowing us to use the plot() function to visualize spatial data in map form. This is often a quick and convenient way to visualize your data to check results.\nIt seems pretty intuitive, but let’s look at what happens if we use the plot command to plot our monsters data:\nplot(monsters)\nWhoops! What happened? If we don’t specify which column in the attribute table to plot, plot() tries to plot all of them sequentially. If you have a large dataset, this can take a while and it’s almost never what we actually want.\nLet’s just plot the shapes without any data. We can do this by specifying that we want to plot the geometry column. In this case, it’s called “geom”.\nplot(st_geometry(monsters))\n\n\n\n\n\n\n\n  #Both of these work, but require you to know the name of the geometry column:\n  #plot(monsters$geom)  \n  #plot(monsters[\"geom\"])\nWe can see the distribution of the data and if you use your imagination, you might be able to make out the general shapes of the continents.\nLet’s plot them by marker type:\nplot(monsters[\"marker\"])\nThat’s pretty rough, but it gives us an idea of how the marker (animal forms) are distributed in the dataset.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Base R</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Base_R.html#multiple-layers",
+    "href": "chapters/Base_R.html#multiple-layers",
+    "title": "2  Base R",
+    "section": "2.2 Multiple Layers",
+    "text": "2.2 Multiple Layers\nWe’ve seen that using plot() to visualize a single layer can be a quick way to make sure a data set contains what we think it does, but sometimes we need more context.\nYou might have noticed that each time we call the plot() function, the previous data we plotted disappears. So how can we show more than one layer on the same plot? plot() has an argument called add that is boolean (either TRUE or FALSE) and the default is set to FALSE. If we specify TRUE, we can add multiple layers to the same plot. It draws the plots in order, so whatever we want to be the lowest layer, we need to plot that first. Let’s try plotting the monsters (points) over the states layer (polygons):\n\n  plot(st_geometry(states)) \n    plot(st_geometry(monsters), add=TRUE)\n\n\n\n\n\n\n\n\nOk! We’ve got two layers on the same set of axes! Yes, it’s hard to read, but we can fix that next.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Base R</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Base_R.html#styling",
+    "href": "chapters/Base_R.html#styling",
+    "title": "2  Base R",
+    "section": "2.3 Styling",
+    "text": "2.3 Styling\nThe goal of styling our data is to help it communicate better. Open circles on top of state outlines are definitely difficult to understand. Let’s change the plotting arguments to make something more readable and to fit the story we want to tell.\nHow do we know what arguments are available to us? We can reference the documentation for the sf package’s version of plot here or you can type ?plot into your RStudio console and pick the sf version of the help for plot in the Help panel.\nMost of the plotting arguments will need to be set in the first plot. The arguments in subsequent plots will just style the data.\n\n  #create a bounding box object for the zoom area of our map\n  aoi &lt;- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))\n\n\n  plot(\n    st_geometry(states),       #plot the shape of the states\n    col=\"white\",               #fill color for the polygons (states)\n    border=\"gray30\",           #line color for the polygons (states)\n    \n    #xlim=c(-89, -80),         #set the limit of the x axis (longitude)\n    #ylim=c(40, 49),           #set the limit of the y axis (latitude)\n    extent=aoi,                #set the map extent to our AOI bounding box\n    #axes=TRUE,                #makes ticks with lat/long coords... kinda messy\n    bg=\"lightblue3\"            #set the color behind the states (the ocean)\n    )   \n\n  plot(st_geometry(lakes), \n       col=\"lightblue\",\n       border=\"lightblue4\",\n       lwd=1.5,                 #set line weight\n       add=TRUE)\n    \n\n  plot(st_geometry(monsters), \n       pch = 19,               #set the points to filled circles\n       cex = 1.5,               #set symbol size\n       add=TRUE)\n\n\n\n\n\n\n\n\nOne thing to notice here is that plot() is not adhering strictly to our bounding box. It seems be be padding the area of the map on the east and west sides. If we really need out map to conform to the bounding box, clip the input layers with the bounding box.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Base R</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Base_R.html#add-text-labels",
+    "href": "chapters/Base_R.html#add-text-labels",
+    "title": "2  Base R",
+    "section": "2.4 Add Text Labels",
+    "text": "2.4 Add Text Labels\nLet’s add some text labels so we know what the names of each of the monsters are. We can keep the same code to make the plots, but we need to add a call to the function text() at the end to write the text labels on top of the rest of the map.\n\n  #create a bounding box object for the zoom area of our map\n  aoi &lt;- st_bbox(c(xmin = -89, xmax = -80, ymax = 49, ymin = 40), crs = st_crs(4326))\n\n\n  plot(\n    st_geometry(states),       \n    col=\"white\",               \n    border=\"gray30\",           \n    extent=aoi,                \n    bg=\"lightblue3\"            \n    )   \n\n  plot(st_geometry(lakes), \n       col=\"lightblue\",\n       border=\"lightblue4\",\n       lwd=1.5,                 \n       add=TRUE)\n    \n\n  plot(st_geometry(monsters), \n       pch = 19,               \n       cex = 1.5,              \n       add=TRUE)\n  \n  text(monsters,               #locations\n       monsters$Name,          #labels\n       cex = 0.75,             #scale for the characters (text)\n       pos = 1)                #text position: 1=below, 2=left, 3=above, 4=right\n\n\n\n\n\n\n\n\nWe don’t have much control over label placement with base plot() or the graphic’s final dimensions. If you want to edit this with more control, you could export a pdf file and edit it with a vector illustration software like Inkscape or Adobe Illustrator.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Base R</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Base_R.html#north-arrow-scale-bar",
+    "href": "chapters/Base_R.html#north-arrow-scale-bar",
+    "title": "2  Base R",
+    "section": "2.5 North Arrow & Scale Bar",
+    "text": "2.5 North Arrow & Scale Bar\nThe base plot() function isn’t really designed to make publication-ready maps. Adding a scale bar and north arrow are not really in the scope of this particular work flow so we’ll skip that here. However, the map we made probably doesn’t need those things if our audience is familiar with the Great Lakes area because they map itself would convey a sense of scale and orientation.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Base R</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Base_R.html#summary",
+    "href": "chapters/Base_R.html#summary",
+    "title": "2  Base R",
+    "section": "2.6 Summary",
+    "text": "2.6 Summary\nWe’ve seen that we can create a map quickly using plot() that communicates clearly what each layer contains. We have some basic options for controlling the style of the map, but to make a profession-quality map, we probably need a package specifically designed to make maps. We’ll cover other map making packages in subsequent sections.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Base R</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tmap.html",
+    "href": "chapters/tmap.html",
+    "title": "3  tmap",
+    "section": "",
+    "text": "3.1 Simple Map\ntmap is a popular package for making maps. It uses the concepts of a Grammar of Graphics to layer data as well as visuzalization rules. If you’re familiar with the ggplot2 package, this will feel similar. If you’re not familiar with ggplot2 (or not a fan), that’s ok because tmap uses layers in much the same way we just built maps using the base R plot() function.\nFirst, we load the libraries we’ll need:\n#install.packages(\"tmap\")\n  library(\"tmap\")\n\nWarning: package 'tmap' was built under R version 4.4.3\nGrammar of Graphics tools typically follow a pattern: first you indicate which data you want to work with, then you indicate the way the data should be styled. Let’s map the states data to see a basic no-frills example:\ntm_shape(states) +  #the data we want to map\n    tm_polygons()     #style the data using the defaults",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>tmap</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tmap.html#multiple-layers",
+    "href": "chapters/tmap.html#multiple-layers",
+    "title": "3  tmap",
+    "section": "3.2 Multiple Layers",
+    "text": "3.2 Multiple Layers\nWith tmap, if we want to add multiple layers to the map, we can think of each layer as a separate map that we stack together. For our map, we’ll first make the layer that contains the states, then we’ll add a layer that contains the lakes, then a final layer that contains the monsters.\n\n    map_states &lt;- tm_shape(states) +  \n    tm_polygons() \n\n  map_lakes &lt;- map_states +         #start with the states map\n    tm_shape(lakes) +               #add the lakes data\n    tm_polygons()                   #style the lakes data\n  \n  map_monsters &lt;- map_lakes +       #start with the lakes map\n    tm_shape(monsters) +            #add the monsters data\n    tm_dots()                       #style the monsters data\n  \n  map_monsters                      #call the map variable to plot the map inside it",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>tmap</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tmap.html#styling",
+    "href": "chapters/tmap.html#styling",
+    "title": "3  tmap",
+    "section": "3.3 Styling",
+    "text": "3.3 Styling\nThe goal of styling our data is to help it communicate better. Dots on top of state outlines are definitely difficult to understand. Let’s change the plotting arguments to make something more readable and to fit the story we want to tell.\n\n  #create a bounding box object for the zoom area of our map\n  aoi &lt;- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))\n\n\n    map_states &lt;- \n      tm_shape(states, \n         bbox = aoi) +                    #set the extend for the map\n      \n    tm_polygons(\n      fill=\"white\",                     #fill the polygons with white\n      col=\"gray30\") +                   #make the outline dark gray\n    tm_layout(bg.color=\"lightblue3\")    #set the background color with the layout options\n\n  \n    map_lakes &lt;- map_states +         \n    tm_shape(lakes) +               \n    tm_polygons(\n      fill = \"lightblue\",               #fill the polygons with light blue\n      col=\"lightblue4\"                  #make the outline a darker blue\n      )                   \n  \n  map_monsters &lt;- map_lakes +       \n    tm_shape(monsters) +            \n    tm_dots(size=.5)                    #set the size of the points              \n  \n  map_monsters",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>tmap</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tmap.html#add-text-labels",
+    "href": "chapters/tmap.html#add-text-labels",
+    "title": "3  tmap",
+    "section": "3.4 Add Text Labels",
+    "text": "3.4 Add Text Labels\nLet’s add some text labels so we know what the names of each of the monsters are.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>tmap</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tmap.html#north-arrow-scale-bar",
+    "href": "chapters/tmap.html#north-arrow-scale-bar",
+    "title": "3  tmap",
+    "section": "3.5 North Arrow & Scale Bar",
+    "text": "3.5 North Arrow & Scale Bar",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>tmap</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/tmap.html#summary",
+    "href": "chapters/tmap.html#summary",
+    "title": "3  tmap",
+    "section": "3.6 Summary",
+    "text": "3.6 Summary\nWe’ve seen that",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>tmap</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Additional_Resources.html",
+    "href": "chapters/Additional_Resources.html",
+    "title": "4  Additional Resources",
+    "section": "",
+    "text": "4.1 Working with Spatial Data\nBelow are some other materials we think you might find helpful either as a rereference or as a tool to learn more about this topic.\nDataLab’s Cartography for Academic Publications Workshop\nDataLab’s Spatial Data Formats Workshop\nmaptimeDavis - a welcoming community of practice focused on spatial data",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Additional Resources</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Additional_Resources.html#learning-using-r",
+    "href": "chapters/Additional_Resources.html#learning-using-r",
+    "title": "4  Additional Resources",
+    "section": "4.2 Learning & Using R",
+    "text": "4.2 Learning & Using R\nDataLab’s R Basics Workshop\nDavis R Users Group - a welcoming community of practice focused on using the R programming language",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Additional Resources</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/Additional_Resources.html#other-mapping-in-r-tutorials",
+    "href": "chapters/Additional_Resources.html#other-mapping-in-r-tutorials",
+    "title": "4  Additional Resources",
+    "section": "4.3 Other Mapping in R Tutorials",
+    "text": "4.3 Other Mapping in R Tutorials\nPlotting Simple Features\nNCEAS R Color Cheatsheet\nMaking beautiful inset maps in R using sf, ggplot2 and cowplot\ntmap website",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Additional Resources</span>"
+    ]
+  }
+]
