@@ -18,10 +18,10 @@ It seems pretty intuitive, but let's look at what happens if we use the plot com
 
 Whoops! What happened? If we don't specify which column in the attribute table to plot, `plot()` tries to plot all of them sequentially. If you have a large dataset, this can take a while and it's almost never what we actually want.
 
-Let's just plot the shapes without any data. We can do this by specifying that we want to plot the geometry column. In this case, it's called "geom".
+Let's just plot the shapes without any data. We can do this by specifying that we want to plot the geometry column. In this case, it's called "geom". We can also use the `st_geometry()` function to access the geometries.
 
 ```{r echo = TRUE}
-	
+
   plot(st_geometry(monsters))
   
   #Both of these work, but require you to know the name of the geometry column:
@@ -47,7 +47,7 @@ You might have noticed that each time we call the `plot()` function, the previou
 
 ```{r echo = TRUE}
   plot(st_geometry(states))	
-	plot(st_geometry(monsters), add=TRUE)
+  plot(st_geometry(monsters), add=TRUE)
 
 ```
 Ok! We've got two layers on the same set of axes! Yes, it's hard to read, but we can fix that next.
@@ -62,7 +62,7 @@ Most of the plotting arguments will need to be set in the first plot. The argume
 
 ```{r echo = TRUE}
 
-  #create a bounding box object for the zoom area of our map
+  #create a bounding box object for the zoom area of our map (the Great Lakes region)
   aoi <- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))
 
 
