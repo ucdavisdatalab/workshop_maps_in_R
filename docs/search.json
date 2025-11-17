@@ -114,7 +114,7 @@
     "href": "chapters/tmap.html",
     "title": "3  tmap",
     "section": "",
-    "text": "3.1 Simple Map\ntmap is a popular package for making maps. It uses the concepts of a Grammar of Graphics to layer data as well as visuzalization rules. If you’re familiar with the ggplot2 package, this will feel similar. If you’re not familiar with ggplot2 (or not a fan), that’s ok because tmap uses layers in much the same way we just built maps using the base R plot() function.\nFirst, we load the libraries we’ll need:\n#install.packages(\"tmap\")\n  library(\"tmap\")\n\nWarning: package 'tmap' was built under R version 4.4.3\nGrammar of Graphics tools typically follow a pattern: first you indicate which data you want to work with, then you indicate the way the data should be styled. Let’s map the states data to see a basic no-frills example:\ntm_shape(states) +  #the data we want to map\n    tm_polygons()     #style the data using the defaults",
+    "text": "3.1 Simple Map\ntmap is a popular package for making maps. It uses the concepts of a Grammar of Graphics to layer data as well as visualization rules. If you’re familiar with the ggplot2 package, this will feel similar. If you’re not familiar with ggplot2 (or not a fan), that’s ok because tmap uses layers in much the same way we just built maps using the base R plot() function.\nFirst, we load the libraries we’ll need:\n#install.packages(\"tmap\")\n  library(\"tmap\")\n\nWarning: package 'tmap' was built under R version 4.4.3\nGrammar of Graphics tools typically follow a pattern: first you indicate which data you want to work with, then you indicate the way the data should be styled. Let’s map the states data to see a basic no-frills example:\ntm_shape(states) +  #the data we want to map\n    tm_polygons()     #style the data using the defaults",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>tmap</span>"
     ]
@@ -170,33 +170,93 @@
     ]
   },
   {
+    "objectID": "chapters/ggmap.html",
+    "href": "chapters/ggmap.html",
+    "title": "4  ggmap",
+    "section": "",
+    "text": "4.1 Simple Map\nggmap a popular package for making maps in R that extends the ggplot2 concept. Like tmap, it also uses the concepts of a Grammar of Graphics to layer data as well as visualization rules.\nFirst, we load the libraries we’ll need:\n#install.packages(\"ggmap\")\n  library(\"ggmap\")\n\nLoading required package: ggplot2\n\n\nWarning: package 'ggplot2' was built under R version 4.4.3\n\n\nℹ Google's Terms of Service: &lt;https://mapsplatform.google.com&gt;\n  Stadia Maps' Terms of Service: &lt;https://stadiamaps.com/terms-of-service/&gt;\n  OpenStreetMap's Tile Usage Policy: &lt;https://operations.osmfoundation.org/policies/tiles/&gt;\nℹ Please cite ggmap if you use it! Use `citation(\"ggmap\")` for details.\nGrammar of Graphics tools typically follow a pattern: first you indicate which data you want to work with, then you indicate the way the data should be styled. Let’s map the states data to see a basic no-frills example:",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ggmap</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ggmap.html#multiple-layers",
+    "href": "chapters/ggmap.html#multiple-layers",
+    "title": "4  ggmap",
+    "section": "4.2 Multiple Layers",
+    "text": "4.2 Multiple Layers\nWith tmap, if we want to add multiple layers to the map, we can think of each layer as a separate map that we stack together. For our map, we’ll first make the layer that contains the states, then we’ll add a layer that contains the lakes, then a final layer that contains the monsters.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ggmap</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ggmap.html#styling",
+    "href": "chapters/ggmap.html#styling",
+    "title": "4  ggmap",
+    "section": "4.3 Styling",
+    "text": "4.3 Styling\nThe goal of styling our data is to help it communicate better. Dots on top of state outlines are definitely difficult to understand. Let’s change the plotting arguments to make something more readable and to fit the story we want to tell.\n\n  #create a bounding box object for the zoom area of our map\n  aoi &lt;- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ggmap</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ggmap.html#add-text-labels",
+    "href": "chapters/ggmap.html#add-text-labels",
+    "title": "4  ggmap",
+    "section": "4.4 Add Text Labels",
+    "text": "4.4 Add Text Labels\nLet’s add some text labels so we know what the names of each of the monsters are.\n\n  #create a bounding box object for the zoom area of our map\n  aoi &lt;- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))\n\nLabeling of points is challenging for tmap. It doesn’t have a way to avoid label collisions (overlaps) and the placement options don’t really do much to avoid labels running over the symbols. I also haven’t found much guidance on placing the labels. Most of the tutorials avoid this problem by labeling polygons where the exact placement isn’t a concern. Like the discussion of plot(), this map would benefit from moving the labels by hand. Export a pdf and edit it in a vector illustration software like Inkscape or Adobe Illustrator.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ggmap</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ggmap.html#north-arrow-scale-bar",
+    "href": "chapters/ggmap.html#north-arrow-scale-bar",
+    "title": "4  ggmap",
+    "section": "4.5 North Arrow & Scale Bar",
+    "text": "4.5 North Arrow & Scale Bar\nOne big benefit of the tmap workflow is the built in option to add norh arrows and scale bars. Adding them in is super simple and if you’re happy with the defaults, it’s pretty quick. We’ll put ours in the lower left corner where they won’t cover up our monster points. Also, we’re adding these to the last layer of the map we built so that the arrow and scale bar don’t get covered up by anything else. (Note I’m taking out the labels because they are messy.)\n\n  #create a bounding box object for the zoom area of our map\n  aoi &lt;- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ggmap</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/ggmap.html#summary",
+    "href": "chapters/ggmap.html#summary",
+    "title": "4  ggmap",
+    "section": "5.1 Summary",
+    "text": "5.1 Summary\nWe’ve seen that we can build a map in layers using tmap in a similar manner to the workflow we used in the base plot() workflow. tmap has more built-in features for composing maps and finer control over some aspects of maps like north arrows and scale bars. It also has built-in base map tools which makes making a map quick. But tmap still doesn’t have an easy way to deal with label placement.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ggmap</span>"
+    ]
+  },
+  {
     "objectID": "chapters/Additional_Resources.html",
     "href": "chapters/Additional_Resources.html",
-    "title": "4  Additional Resources",
+    "title": "5  Additional Resources",
     "section": "",
-    "text": "4.1 Working with Spatial Data\nBelow are some other materials we think you might find helpful either as a rereference or as a tool to learn more about this topic.\nDataLab’s Cartography for Academic Publications Workshop\nDataLab’s Spatial Data Formats Workshop\nmaptimeDavis - a welcoming community of practice focused on spatial data",
+    "text": "5.1 Working with Spatial Data\nBelow are some other materials we think you might find helpful either as a rereference or as a tool to learn more about this topic.\nDataLab’s Cartography for Academic Publications Workshop\nDataLab’s Spatial Data Formats Workshop\nmaptimeDavis - a welcoming community of practice focused on spatial data",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Additional Resources</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Additional Resources</span>"
     ]
   },
   {
     "objectID": "chapters/Additional_Resources.html#learning-using-r",
     "href": "chapters/Additional_Resources.html#learning-using-r",
-    "title": "4  Additional Resources",
-    "section": "4.2 Learning & Using R",
-    "text": "4.2 Learning & Using R\nDataLab’s R Basics Workshop\nDavis R Users Group - a welcoming community of practice focused on using the R programming language",
+    "title": "5  Additional Resources",
+    "section": "5.2 Learning & Using R",
+    "text": "5.2 Learning & Using R\nDataLab’s R Basics Workshop\nDavis R Users Group - a welcoming community of practice focused on using the R programming language",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Additional Resources</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Additional Resources</span>"
     ]
   },
   {
     "objectID": "chapters/Additional_Resources.html#other-mapping-in-r-tutorials",
     "href": "chapters/Additional_Resources.html#other-mapping-in-r-tutorials",
-    "title": "4  Additional Resources",
-    "section": "4.3 Other Mapping in R Tutorials",
-    "text": "4.3 Other Mapping in R Tutorials\nPlotting Simple Features\nNCEAS R Color Cheatsheet\nMaking beautiful inset maps in R using sf, ggplot2 and cowplot\ntmap website\nElegant and informative maps with tmap\nSpatial Data & R",
+    "title": "5  Additional Resources",
+    "section": "5.3 Other Mapping in R Tutorials",
+    "text": "5.3 Other Mapping in R Tutorials\nPlotting Simple Features\nNCEAS R Color Cheatsheet\nMaking beautiful inset maps in R using sf, ggplot2 and cowplot\ntmap website\nElegant and informative maps with tmap\nSpatial Data & R\nGeocomputation with R: Making maps with R - a good summary of packages for composing maps",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Additional Resources</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Additional Resources</span>"
     ]
   }
 ]

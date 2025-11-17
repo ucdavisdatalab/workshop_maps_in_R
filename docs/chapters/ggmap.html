@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Michele Tobias, PhD">
-<meta name="dcterms.date" content="2025-11-17">
 
-<title>Maps in R</title>
+<title>4&nbsp; ggmap – Maps in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,27 +20,63 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./chapters/Introduction.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/Additional_Resources.html" rel="next">
+<link href="../chapters/tmap.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -83,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/ggmap.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ggmap</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -98,10 +132,10 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="https://datalab.ucdavis.edu/" class="sidebar-logo-link">
-      <img src="./images/datalab-logo-full-color-rgb-1.png" alt="The logo of the UC Davis DataLab." class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../images/datalab-logo-full-color-rgb-1.png" alt="The logo of the UC Davis DataLab." class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Maps in R</a> 
+      <a href="../">Maps in R</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/ucdavisdatalab/workshop_maps_in_R" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
@@ -116,37 +150,37 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/Introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/Introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/Base_R.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/Base_R.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Base R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/tmap.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/tmap.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">tmap</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/ggmap.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/ggmap.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ggmap</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/Additional_Resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/Additional_Resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Additional Resources</span></span></a>
   </div>
 </li>
@@ -160,35 +194,31 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#simple-map" id="toc-simple-map" class="nav-link active" data-scroll-target="#simple-map"><span class="header-section-number">4.1</span> Simple Map</a></li>
+  <li><a href="#multiple-layers" id="toc-multiple-layers" class="nav-link" data-scroll-target="#multiple-layers"><span class="header-section-number">4.2</span> Multiple Layers</a></li>
+  <li><a href="#styling" id="toc-styling" class="nav-link" data-scroll-target="#styling"><span class="header-section-number">4.3</span> Styling</a></li>
+  <li><a href="#add-text-labels" id="toc-add-text-labels" class="nav-link" data-scroll-target="#add-text-labels"><span class="header-section-number">4.4</span> Add Text Labels</a></li>
+  <li><a href="#north-arrow-scale-bar" id="toc-north-arrow-scale-bar" class="nav-link" data-scroll-target="#north-arrow-scale-bar"><span class="header-section-number">4.5</span> North Arrow &amp; Scale Bar</a></li>
+  <li><a href="#ready-made-tile-services" id="toc-ready-made-tile-services" class="nav-link" data-scroll-target="#ready-made-tile-services"><span class="header-section-number">5</span> Ready-Made Tile Services</a>
+  <ul class="collapse">
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5.1</span> Summary</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/blob/main/chapters/ggmap.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Maps in R</h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ggmap</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Michele Tobias, PhD </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">November 17, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -198,47 +228,74 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overview" class="level1 unnumbered">
-<h1 class="unnumbered">Overview</h1>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p><a href="https://cran.r-project.org/web/packages/ggmap/index.html">ggmap</a> a popular package for making maps in R that extends the <code>ggplot2</code> concept. Like <code>tmap</code>, it also uses the concepts of a Grammar of Graphics to layer data as well as visualization rules.</p>
+<section id="simple-map" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="simple-map"><span class="header-section-number">4.1</span> Simple Map</h2>
+<p>First, we load the libraries we’ll need:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">#install.packages("ggmap")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(<span class="st">"ggmap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: ggplot2</code></pre>
 </div>
-<div class="callout-title-container flex-fill">
-Learning Goals
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Google's Terms of Service: &lt;https://mapsplatform.google.com&gt;
+  Stadia Maps' Terms of Service: &lt;https://stadiamaps.com/terms-of-service/&gt;
+  OpenStreetMap's Tile Usage Policy: &lt;https://operations.osmfoundation.org/policies/tiles/&gt;
+ℹ Please cite ggmap if you use it! Use `citation("ggmap")` for details.</code></pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>After completing this chapter, learners should be able to:</p>
-<ul>
-<li>Apply popular mapping workflows to create maps with spatial data</li>
-<li>Assess which workflow works best in different situations</li>
-<li>Apply cartographic best practices to a map composition in R</li>
-</ul>
-</div>
-</div>
-<section id="workshop-description" class="level5">
-<h5 class="anchored" data-anchor-id="workshop-description">Workshop Description</h5>
-<p>In this workshop, participants will learn how to use several options for composing maps in R.</p>
+<p>Grammar of Graphics tools typically follow a pattern: first you indicate which data you want to work with, then you indicate the way the data should be styled. Let’s map the states data to see a basic no-frills example:</p>
 </section>
-<section id="software-data" class="level5">
-<h5 class="anchored" data-anchor-id="software-data">Software &amp; Data</h5>
-<p>To fully participate in this workshop, learners will need to attend to the following before the workshop:</p>
-<ol type="1">
-<li>Download and <a href="https://cran.rstudio.com/">install R</a></li>
-<li>Download and <a href="https://posit.co/download/rstudio-desktop/">install RStudio</a></li>
-<li>Download the <a href="https://ucdavis.box.com/s/ozobvtvehgmsnfrizwb2darqfsoqmmgq">workshop data</a> and, unzip it, and store it in a location they can find such as a folder dedicated to this workshop (we do not recommend leaving it in your Downloads folder). This is the same data we use in the Cartography for Academic Publications Workshop.</li>
-</ol>
+<section id="multiple-layers" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="multiple-layers"><span class="header-section-number">4.2</span> Multiple Layers</h2>
+<p>With <code>tmap</code>, if we want to add multiple layers to the map, we can think of each layer as a separate map that we stack together. For our map, we’ll first make the layer that contains the states, then we’ll add a layer that contains the lakes, then a final layer that contains the monsters.</p>
 </section>
-<section id="prerequisites" class="level5">
-<h5 class="anchored" data-anchor-id="prerequisites">Prerequisites</h5>
-<p>For the best experience, we recommend learners have the following skills before taking this workshop:</p>
-<ul>
-<li>an introductory understanding of programming in R (for example, you are familiar with how to load libraries, load common data formats like a CSV, and are comfortable running basic commands). See DataLab’s <a href="https://ucdavisdatalab.github.io/workshop_r_basics/">R Basics Workshop</a> for help.</li>
-<li>an introductory understanding of spatial data (for example, you are familiar with the difference between raster and vector data). See DataLab’s <a href="https://ucdavisdatalab.github.io/workshop_spatial_data_formats/">Spatial Data Formats Workshop</a> for help.</li>
-<li>(recommended) review the concepts (first section) of DataLab’s <a href="https://github.com/MicheleTobias/Workshop-Cartography-Journal-Figures">Cartography for Academic Publications Workshop</a></li>
-</ul>
+<section id="styling" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="styling"><span class="header-section-number">4.3</span> Styling</h2>
+<p>The goal of styling our data is to help it communicate better. Dots on top of state outlines are definitely difficult to understand. Let’s change the plotting arguments to make something more readable and to fit the story we want to tell.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#create a bounding box object for the zoom area of our map</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  aoi <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">c</span>(<span class="at">xmin =</span> <span class="sc">-</span><span class="dv">96</span>, <span class="at">xmax =</span> <span class="sc">-</span><span class="dv">73</span>, <span class="at">ymax =</span> <span class="dv">50</span>, <span class="at">ymin =</span> <span class="dv">40</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="add-text-labels" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="add-text-labels"><span class="header-section-number">4.4</span> Add Text Labels</h2>
+<p>Let’s add some text labels so we know what the names of each of the monsters are.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#create a bounding box object for the zoom area of our map</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  aoi <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">c</span>(<span class="at">xmin =</span> <span class="sc">-</span><span class="dv">96</span>, <span class="at">xmax =</span> <span class="sc">-</span><span class="dv">73</span>, <span class="at">ymax =</span> <span class="dv">50</span>, <span class="at">ymin =</span> <span class="dv">40</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Labeling of points is challenging for <code>tmap</code>. It doesn’t have a way to avoid label collisions (overlaps) and the placement options don’t really do much to avoid labels running over the symbols. I also haven’t found much guidance on placing the labels. Most of the tutorials avoid this problem by labeling polygons where the exact placement isn’t a concern. Like the discussion of <code>plot()</code>, this map would benefit from moving the labels by hand. Export a pdf and edit it in a vector illustration software like Inkscape or Adobe Illustrator.</p>
+</section>
+<section id="north-arrow-scale-bar" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="north-arrow-scale-bar"><span class="header-section-number">4.5</span> North Arrow &amp; Scale Bar</h2>
+<p>One big benefit of the <code>tmap</code> workflow is the built in option to add norh arrows and scale bars. Adding them in is super simple and if you’re happy with the defaults, it’s pretty quick. We’ll put ours in the lower left corner where they won’t cover up our monster points. Also, we’re adding these to the last layer of the map we built so that the arrow and scale bar don’t get covered up by anything else. (Note I’m taking out the labels because they are messy.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#create a bounding box object for the zoom area of our map</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  aoi <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">c</span>(<span class="at">xmin =</span> <span class="sc">-</span><span class="dv">96</span>, <span class="at">xmax =</span> <span class="sc">-</span><span class="dv">73</span>, <span class="at">ymax =</span> <span class="dv">50</span>, <span class="at">ymin =</span> <span class="dv">40</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ready-made-tile-services" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Ready-Made Tile Services</h1>
+<p>Another benefit of the <code>tmap</code> workflow is the easy availability of using tile services (commonly known as “basemaps” but people use that term to mean so many other things as well). Tile services are continuous map layers that are stored in square chunks (tiles) so you only need to load the part of the world in your area of interest. One tile service that may people are familiar with is Google Maps, but open data like OpenStreetMap is also available as a tile service.</p>
+<p>Remember that even if a tile service makes a dataset easy to use, you still need to comply with the terms of service for that specific dataset.</p>
+<p>Let’s replace our base layers (states and lakes) with the default basemap.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#create a bounding box object for the zoom area of our map</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  aoi <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">c</span>(<span class="at">xmin =</span> <span class="sc">-</span><span class="dv">96</span>, <span class="at">xmax =</span> <span class="sc">-</span><span class="dv">73</span>, <span class="at">ymax =</span> <span class="dv">50</span>, <span class="at">ymin =</span> <span class="dv">40</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What about a base layer with some more color or labels? Let’s add the OpenStreetMap tile service.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#create a bounding box object for the zoom area of our map</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  aoi <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">c</span>(<span class="at">xmin =</span> <span class="sc">-</span><span class="dv">96</span>, <span class="at">xmax =</span> <span class="sc">-</span><span class="dv">73</span>, <span class="at">ymax =</span> <span class="dv">50</span>, <span class="at">ymin =</span> <span class="dv">40</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="summary" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">5.1</span> Summary</h2>
+<p>We’ve seen that we can build a map in layers using <code>tmap</code> in a similar manner to the workflow we used in the base <code>plot()</code> workflow. <code>tmap</code> has more built-in features for composing maps and finer control over some aspects of maps like north arrows and scale bars. It also has built-in base map tools which makes making a map quick. But <code>tmap</code> still doesn’t have an easy way to deal with label placement.</p>
 
 
 </section>
@@ -646,10 +703,13 @@ Learning Goals
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../chapters/tmap.html" class="pagination-link" aria-label="tmap">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">tmap</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/Introduction.html" class="pagination-link" aria-label="Introduction">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/Additional_Resources.html" class="pagination-link" aria-label="Additional Resources">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Additional Resources</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -658,4 +718,4 @@ Learning Goals
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/blob/main/chapters/ggmap.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
