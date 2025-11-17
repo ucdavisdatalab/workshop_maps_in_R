@@ -30,3 +30,5 @@ DataLab's [R Basics Workshop](https://ucdavisdatalab.github.io/workshop_r_basics
 [Elegant and informative maps with tmap](https://r-tmap.github.io/tmap-book/index.html)
 
 [Spatial Data & R](https://mapping-in-r-workshop.ryanpeek.org/04_vig_workflow_in_r_snowdata)
+
+[Geocomputation with R: Making maps with R](https://r.geocompx.org/adv-map#adv-map) - a good summary of packages for composing maps
