@@ -203,6 +203,31 @@ What about a base layer with some more color or labels? Let's add the OpenStreet
   map_monsters                      
 ```
 
+## Interactive Maps
+
+Being able to pan and zoom around a plot is a useful tool for understanding your data or the results of an analysis. tmap makes this relatively easy with the `tmap_leaflet()` function.  Let's plot our monster data on the default basemap.  The pattern of the code should look familiar: set up the map, building up layers from the bottom, and then plot the map.
+
+```{r echo = TRUE}
+
+  #create a bounding box object for the zoom area of our map
+  aoi <- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))
+
+leaflet_map = 							
+  tm_shape(monsters, bbox = aoi) +		#add the monster data     
+  tm_dots(size=.5)						#style the monster data
+
+tmap_leaflet(leaflet_map, show = TRUE)	#plot the monster data                      
+```
+
+Notice the source information for the basemap printed in the lower right corner of the map. If you want to publish this map, you'll need to check the Terms of Service for this data source. 
+
+Try zooming out and panning around the world to see more lake monster locations in context. You can change your basemap like we did earlier in the workshop with a parameter like `tm_basemap("OpenStreetMap")` when you define your map contents. 
+
+
+
+
+
+
 ## Summary
 
 We've seen that we can build a map in layers using `tmap` in a similar manner to the workflow we used in the base `plot()` workflow.  `tmap` has more built-in features for composing maps and finer control over some aspects of maps like north arrows and scale bars. It also has built-in base map tools which makes making a map quick.  But `tmap` still doesn't have an easy way to deal with label placement.
