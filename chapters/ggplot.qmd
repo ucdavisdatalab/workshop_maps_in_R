@@ -36,6 +36,8 @@ Grammar of Graphics tools typically follow a pattern: first you indicate which d
 With `tmap`, if we want to add multiple layers to the map, we can think of each layer as a separate map that we stack together. For our map, we'll first make the layer that contains the states, then we'll add a layer that contains the lakes, then a final layer that contains the monsters.
 
 ```{r echo = TRUE}
+  aoi <- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))
+  
   ggplot() +
     
 	geom_sf(data = states) +		#plot the states
