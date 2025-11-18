@@ -240,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Whoops! What happened? If we don’t specify which column in the attribute table to plot, <code>plot()</code> tries to plot all of them sequentially. If you have a large dataset, this can take a while and it’s almost never what we actually want.</p>
-<p>Let’s just plot the shapes without any data. We can do this by specifying that we want to plot the geometry column. In this case, it’s called “geom”.</p>
+<p>Let’s just plot the shapes without any data. We can do this by specifying that we want to plot the geometry column. In this case, it’s called “geom”. We can also use the <code>st_geometry()</code> function to access the geometries.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="fu">st_geometry</span>(monsters))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -274,7 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You might have noticed that each time we call the <code>plot()</code> function, the previous data we plotted disappears. So how can we show more than one layer on the same plot? <code>plot()</code> has an argument called <code>add</code> that is boolean (either <code>TRUE</code> or <code>FALSE</code>) and the default is set to <code>FALSE</code>. If we specify <code>TRUE</code>, we can add multiple layers to the same plot. It draws the plots in order, so whatever we want to be the lowest layer, we need to plot that first. Let’s try plotting the monsters (points) over the states layer (polygons):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="fu">st_geometry</span>(states)) </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(<span class="fu">st_geometry</span>(monsters), <span class="at">add=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="fu">st_geometry</span>(monsters), <span class="at">add=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -291,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>How do we know what arguments are available to us? We can reference the documentation for the sf package’s version of plot <a href="https://r-spatial.github.io/sf/reference/plot.html">here</a> or you can type <code>?plot</code> into your RStudio console and pick the sf version of the help for plot in the Help panel.</p>
 <p>Most of the plotting arguments will need to be set in the first plot. The arguments in subsequent plots will just style the data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#create a bounding box object for the zoom area of our map</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#create a bounding box object for the zoom area of our map (the Great Lakes region)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  aoi <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">c</span>(<span class="at">xmin =</span> <span class="sc">-</span><span class="dv">96</span>, <span class="at">xmax =</span> <span class="sc">-</span><span class="dv">73</span>, <span class="at">ymax =</span> <span class="dv">50</span>, <span class="at">ymin =</span> <span class="dv">40</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>

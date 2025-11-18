@@ -201,7 +201,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#north-arrow-scale-bar" id="toc-north-arrow-scale-bar" class="nav-link" data-scroll-target="#north-arrow-scale-bar"><span class="header-section-number">3.5</span> North Arrow &amp; Scale Bar</a></li>
   <li><a href="#ready-made-tile-services" id="toc-ready-made-tile-services" class="nav-link" data-scroll-target="#ready-made-tile-services"><span class="header-section-number">4</span> Ready-Made Tile Services</a>
   <ul class="collapse">
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4.1</span> Summary</a></li>
+  <li><a href="#interactive-maps" id="toc-interactive-maps" class="nav-link" data-scroll-target="#interactive-maps"><span class="header-section-number">4.1</span> Interactive Maps</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4.2</span> Summary</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/ucdavisdatalab/workshop_maps_in_R/blob/main/chapters/tmap.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -234,15 +235,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>First, we load the libraries we’ll need:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">#install.packages("tmap")</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(<span class="st">"tmap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(<span class="st">"tmap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'tmap' was built under R version 4.4.3</code></pre>
 </div>
 </div>
 <p>Grammar of Graphics tools typically follow a pattern: first you indicate which data you want to work with, then you indicate the way the data should be styled. Let’s map the states data to see a basic no-frills example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_shape</span>(states) <span class="sc">+</span>  <span class="co">#the data we want to map</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_polygons</span>()     <span class="co">#style the data using the defaults</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_shape</span>(states) <span class="sc">+</span>    <span class="co">#the data we want to map</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_polygons</span>()         <span class="co">#style the data using the defaults</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -256,7 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.2" class="anchored" data-anchor-id="multiple-layers"><span class="header-section-number">3.2</span> Multiple Layers</h2>
 <p>With <code>tmap</code>, if we want to add multiple layers to the map, we can think of each layer as a separate map that we stack together. For our map, we’ll first make the layer that contains the states, then we’ll add a layer that contains the lakes, then a final layer that contains the monsters.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    map_states <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(states) <span class="sc">+</span>  </span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  map_states <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(states) <span class="sc">+</span>  </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_polygons</span>() </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  map_lakes <span class="ot">&lt;-</span> map_states <span class="sc">+</span>         <span class="co">#start with the states map</span></span>
@@ -296,10 +297,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    map_lakes <span class="ot">&lt;-</span> map_states <span class="sc">+</span>         </span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_shape</span>(lakes) <span class="sc">+</span>               </span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_polygons</span>(</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> <span class="st">"lightblue"</span>,               <span class="co">#fill the polygons with light blue</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">col=</span><span class="st">"lightblue4"</span>                  <span class="co">#make the outline a darker blue</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tm_shape</span>(lakes) <span class="sc">+</span>               </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tm_polygons</span>(</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill =</span> <span class="st">"lightblue"</span>,               <span class="co">#fill the polygons with light blue</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span><span class="st">"lightblue4"</span>                  <span class="co">#make the outline a darker blue</span></span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>      )                   </span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  map_monsters <span class="ot">&lt;-</span> map_lakes <span class="sc">+</span>       </span>
@@ -403,7 +404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="ready-made-tile-services" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Ready-Made Tile Services</h1>
-<p>Another benefit of the <code>tmap</code> workflow is the easy availability of using tile services (commonly known as “basemaps” but people use that term to mean so many other things as well). Tile services are continuous map layers that are stored in square chunks (tiles) so you only need to load the part of the world in your area of interest. One tile service that may people are familiar with is Google Maps, but open data like OpenStreetMap is also available as a tile service.</p>
+<p>Another benefit of the <code>tmap</code> workflow is the easy availability of using tile services (commonly known as “basemaps” but people use that term to mean so many other things as well). Tile services are continuous map layers that are stored in square chunks (tiles) so you only need to load the part of the world in your area of interest. One tile service that many people are familiar with is Google Maps, but open data like OpenStreetMap is also available as a tile service.</p>
 <p>Remember that even if a tile service makes a dataset easy to use, you still need to comply with the terms of service for that specific dataset.</p>
 <p>Let’s replace our base layers (states and lakes) with the default basemap.</p>
 <div class="cell">
@@ -453,8 +454,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="summary" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.1</span> Summary</h2>
+<section id="interactive-maps" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="interactive-maps"><span class="header-section-number">4.1</span> Interactive Maps</h2>
+<p>Being able to pan and zoom around a plot is a useful tool for understanding your data or the results of an analysis. tmap makes this relatively easy with the <code>tmap_leaflet()</code> function. Let’s plot our monster data on the default basemap. The pattern of the code should look familiar: set up the map, building up layers from the bottom, and then plot the map.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#create a bounding box object for the zoom area of our map</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  aoi <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">c</span>(<span class="at">xmin =</span> <span class="sc">-</span><span class="dv">96</span>, <span class="at">xmax =</span> <span class="sc">-</span><span class="dv">73</span>, <span class="at">ymax =</span> <span class="dv">50</span>, <span class="at">ymin =</span> <span class="dv">40</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>leaflet_map <span class="ot">=</span>                           </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>(monsters, <span class="at">bbox =</span> aoi) <span class="sc">+</span>      <span class="co">#add the monster data     </span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_dots</span>(<span class="at">size=</span>.<span class="dv">5</span>)                      <span class="co">#style the monster data</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_leaflet</span>(leaflet_map, <span class="at">show =</span> <span class="cn">TRUE</span>)  <span class="co">#plot the monster data                      </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Notice the source information for the basemap printed in the lower right corner of the map. If you want to publish this map, you’ll need to check the Terms of Service for this data source.</p>
+<p>Try zooming out and panning around the world to see more lake monster locations in context. You can change your basemap like we did earlier in the workshop with a parameter like <code>tm_basemap("OpenStreetMap")</code> when you define your map contents.</p>
+</section>
+<section id="summary" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.2</span> Summary</h2>
 <p>We’ve seen that we can build a map in layers using <code>tmap</code> in a similar manner to the workflow we used in the base <code>plot()</code> workflow. <code>tmap</code> has more built-in features for composing maps and finer control over some aspects of maps like north arrows and scale bars. It also has built-in base map tools which makes making a map quick. But <code>tmap</code> still doesn’t have an easy way to deal with label placement.</p>
 
 
