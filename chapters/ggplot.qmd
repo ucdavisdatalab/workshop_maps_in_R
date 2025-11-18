@@ -6,26 +6,29 @@
 
 # ggplot2
 
-[ggplot2](https://ggplot2.tidyverse.org/) (this is what people mean when they just say "ggplot") is a popular package for plotting data in R. It has been extended to work with spatial data. Like `tmap`, it also uses the concepts of a Grammar of Graphics to layer data as well as visualization rules.
+As you have seen so far in this workshop, R has some useful tools for visualizing spatial data built in and there are packages that you can work with to make maps that are more refined.  Next we'll talk about the ggplot2 package so you can compare and contrast three of the most popular ways to make maps in R.
 
-[ggmap](https://cran.r-project.org/web/packages/ggmap/index.html) is another popular package for making maps in R that extends the `ggplot2` concept.  ggmap assumes you want to use a basemap with every plot.  
+[ggplot2](https://ggplot2.tidyverse.org/) (commonly referred to as "ggplot") is a popular package for plotting data in R. It has been extended to work with spatial data. Like `tmap`, it also uses the concepts of a Grammar of Graphics to layer data as well as visualization rules.  ggplot is a big topic that could be its own workshop, so today we'll cover the basics so you can learn more on your own if this sparks your interest.
 
-We will focus on ggplot in this workshop.
+A common point of confusion is the difference between ggplot and ggmap.  [ggmap](https://cran.r-project.org/web/packages/ggmap/index.html) is another popular package for making maps in R that extends the `ggplot2` concept.  ggmap assumes you want to use a basemap with every plot. We will focus on ggplot in this workshop.
 
 ## Simple Map
 
 First, we load the libraries we'll need:
 
 ```{r echo = TRUE}
-  #install.packages("ggmap")
-  library("ggmap")
+  #install.packages("ggplot2")
+  library("ggplot2")
 ```
 
 Grammar of Graphics tools typically follow a pattern: first you indicate which data you want to work with, then you indicate the way the data should be styled. Let's map the states data to see a basic no-frills example:
 
 ```{r echo = TRUE}
-
+  ggplot(states) +		#indicate which data to plot
+    geom_sf()			#use the default style for sf objects
 ```
+
+
 
 
 ## Multiple Layers
@@ -33,6 +36,17 @@ Grammar of Graphics tools typically follow a pattern: first you indicate which d
 With `tmap`, if we want to add multiple layers to the map, we can think of each layer as a separate map that we stack together. For our map, we'll first make the layer that contains the states, then we'll add a layer that contains the lakes, then a final layer that contains the monsters.
 
 ```{r echo = TRUE}
+  ggplot() +
+    
+	geom_sf(data = states) +		#plot the states
+    
+	geom_sf(data = lakes) +			#plot the lakes and make them blue
+    
+	geom_sf(data = monsters) +		#plot the monsters
+    
+	coord_sf(						#set the zoom based on our AOI bounding box
+	   xlim=c(aoi[1], aoi[3]), 
+	   ylim=c(aoi[2], aoi[4]))
 
 ```
 
@@ -42,8 +56,34 @@ The goal of styling our data is to help it communicate better. Dots on top of st
 
 ```{r echo = TRUE}
 
-  #create a bounding box object for the zoom area of our map
-  aoi <- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))
+  gg_monsters <- ggplot() +     #assign the results of the plot to a variable
+  
+  geom_sf(data = states,
+          fill = "white",       #fill the states with white
+          color = "gray30") +	#make the outline a dark gray
+  
+  geom_sf(						
+    data = lakes, 
+    fill = "lightblue",         #fill the lakes with blue
+    color = "lightblue4") +     #make the outline a gray-blue
+  
+  geom_sf(data = monsters,
+          size = 3              #make the points larger
+          ) +				
+  
+  coord_sf(						
+    xlim=c(aoi[1], aoi[3]), 
+    ylim=c(aoi[2], aoi[4]))
+
+  ocean_color <- "lightblue3"     #pick a color for the ocean
+
+  gg_monsters +                   #add theme parameters to the plot & remove lines
+    theme(
+      panel.background = element_rect(fill = ocean_color, color = ocean_color),
+      panel.grid.major = element_line(color = ocean_color),
+      panel.grid.minor = element_line(color = ocean_color),
+	  panel.border = element_rect(color = "black", fill = NA)   #add a black neatline
+      )
 
                  
 ```
