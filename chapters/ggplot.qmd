@@ -4,9 +4,13 @@
   source("r/load_data.R")
 ```
 
-# ggmap
+# ggplot2
 
-[ggmap](https://cran.r-project.org/web/packages/ggmap/index.html) a popular package for making maps in R that extends the `ggplot2` concept. Like `tmap`, it also uses the concepts of a Grammar of Graphics to layer data as well as visualization rules. 
+[ggplot2](https://ggplot2.tidyverse.org/) (this is what people mean when they just say "ggplot") is a popular package for plotting data in R. It has been extended to work with spatial data. Like `tmap`, it also uses the concepts of a Grammar of Graphics to layer data as well as visualization rules.
+
+[ggmap](https://cran.r-project.org/web/packages/ggmap/index.html) is another popular package for making maps in R that extends the `ggplot2` concept.  ggmap assumes you want to use a basemap with every plot.  
+
+We will focus on ggplot in this workshop.
 
 ## Simple Map
 

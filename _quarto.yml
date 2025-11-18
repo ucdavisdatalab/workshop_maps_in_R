@@ -18,7 +18,7 @@ book:
     - "chapters/Introduction.qmd"
     - "chapters/Base_R.qmd"
     - "chapters/tmap.qmd"
-    - "chapters/ggmap.qmd"
+    - "chapters/ggplot.qmd"
     - "chapters/Additional_Resources.qmd"
     #- "chapters/assessment.qmd"
 
