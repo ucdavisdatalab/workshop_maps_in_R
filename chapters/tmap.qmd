@@ -14,14 +14,14 @@ First, we load the libraries we'll need:
 
 ```{r echo = TRUE}
 	#install.packages("tmap")
-  library("tmap")
+    library("tmap")
 ```
 
 Grammar of Graphics tools typically follow a pattern: first you indicate which data you want to work with, then you indicate the way the data should be styled. Let's map the states data to see a basic no-frills example:
 
 ```{r echo = TRUE}
-	tm_shape(states) +  #the data we want to map
-    tm_polygons()     #style the data using the defaults
+	tm_shape(states) +    #the data we want to map
+    tm_polygons()         #style the data using the defaults
 ```
 
 
@@ -30,7 +30,7 @@ Grammar of Graphics tools typically follow a pattern: first you indicate which d
 With `tmap`, if we want to add multiple layers to the map, we can think of each layer as a separate map that we stack together. For our map, we'll first make the layer that contains the states, then we'll add a layer that contains the lakes, then a final layer that contains the monsters.
 
 ```{r echo = TRUE}
-	map_states <- tm_shape(states) +  
+  map_states <- tm_shape(states) +  
     tm_polygons() 
 
   map_lakes <- map_states +         #start with the states map
@@ -65,10 +65,10 @@ The goal of styling our data is to help it communicate better. Dots on top of st
 
   
 	map_lakes <- map_states +         
-    tm_shape(lakes) +               
-    tm_polygons(
-      fill = "lightblue",               #fill the polygons with light blue
-      col="lightblue4"                  #make the outline a darker blue
+      tm_shape(lakes) +               
+      tm_polygons(
+        fill = "lightblue",               #fill the polygons with light blue
+        col="lightblue4"                  #make the outline a darker blue
       )                   
   
   map_monsters <- map_lakes +       
@@ -159,7 +159,7 @@ One big benefit of the `tmap` workflow is the built in option to add norh arrows
 
 # Ready-Made Tile Services
 
-Another benefit of the `tmap` workflow is the easy availability of using tile services (commonly known as "basemaps" but people use that term to mean so many other things as well). Tile services are continuous map layers that are stored in square chunks (tiles) so you only need to load the part of the world in your area of interest. One tile service that may people are familiar with is Google Maps, but open data like OpenStreetMap is also available as a tile service.
+Another benefit of the `tmap` workflow is the easy availability of using tile services (commonly known as "basemaps" but people use that term to mean so many other things as well). Tile services are continuous map layers that are stored in square chunks (tiles) so you only need to load the part of the world in your area of interest. One tile service that many people are familiar with is Google Maps, but open data like OpenStreetMap is also available as a tile service.
 
 Remember that even if a tile service makes a dataset easy to use, you still need to comply with the terms of service for that specific dataset.
 
