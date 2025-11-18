@@ -32,3 +32,11 @@ DataLab's [R Basics Workshop](https://ucdavisdatalab.github.io/workshop_r_basics
 [Spatial Data & R](https://mapping-in-r-workshop.ryanpeek.org/04_vig_workflow_in_r_snowdata)
 
 [Geocomputation with R: Making maps with R](https://r.geocompx.org/adv-map#adv-map) - a good summary of packages for composing maps
+
+### ggplot2 Tutorials
+
+[R as GIS for Economists](https://tmieno2.github.io/R-as-GIS-for-Economists/create-maps.html)
+
+[Making Maps with R](https://bookdown.org/nicohahn/making_maps_with_r5/docs/ggplot2.html)
+
+[ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/maps.html)
