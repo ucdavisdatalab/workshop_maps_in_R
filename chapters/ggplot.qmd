@@ -19,6 +19,7 @@ First, we load the libraries we'll need:
 ```{r echo = TRUE}
   #install.packages("ggplot2")
   library("ggplot2")
+  library(ggspatial)
 ```
 
 Grammar of Graphics tools typically follow a pattern: first you indicate which data you want to work with, then you indicate the way the data should be styled. Let's map the states data to see a basic no-frills example:
