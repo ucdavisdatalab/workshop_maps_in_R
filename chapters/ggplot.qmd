@@ -33,7 +33,7 @@ Grammar of Graphics tools typically follow a pattern: first you indicate which d
 
 ## Multiple Layers
 
-With `tmap`, if we want to add multiple layers to the map, we can think of each layer as a separate map that we stack together. For our map, we'll first make the layer that contains the states, then we'll add a layer that contains the lakes, then a final layer that contains the monsters.
+With `ggplot2`, if we want to add multiple layers to the map, we can think of each layer as a separate map that we stack together. For our map, we'll first make the layer that contains the states, then we'll add a layer that contains the lakes, then a final layer that contains the monsters.
 
 ```{r echo = TRUE}
   aoi <- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))
@@ -113,17 +113,25 @@ Labeling of points is challenging for all of the methods we've looked at. ggplot
 
 ## North Arrow & Scale Bar
 
-One big benefit of the `tmap` workflow is the built in option to add norh arrows and scale bars.  Adding them in is super simple and if you're happy with the defaults, it's pretty quick.  We'll put ours in the lower left corner where they won't cover up our monster points. Also, we're adding these to the last layer of the map we built so that the arrow and scale bar don't get covered up by anything else. (Note I'm taking out the labels because they are messy.)
+`ggplot2` does not come with the ability to add map elements like a north arrow or scale bar to your map, but we can add this capability with another package: ggspatial.
 
 
 ```{r echo = TRUE}
 
-  #create a bounding box object for the zoom area of our map
-  aoi <- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))
-
-
+  gg_monsters +                   #add theme parameters to the plot & remove lines
+  theme(
+    panel.background = element_rect(fill = ocean_color, color = ocean_color),
+    panel.grid.major = element_line(color = ocean_color),
+    panel.grid.minor = element_line(color = ocean_color),
+    panel.border = element_rect(color = "black", fill = NA)
+  ) +
+  geom_sf_text(data=monsters, aes(label = Name), nudge_y = -.3)+
+  annotation_scale(location = "bl", pad_x = unit(2, "cm"))+         #add the scale bar and move it over a little to the right
+  annotation_north_arrow(location = "bl", which_north = "grid")     #add the north arrow
                     
 ```
+
+This map is far from beautiful, but it's a good first draft. If you like ggplot2, there's a lot more you can learn about refining placement and style options, but you've seen the basics to know what's possible and you've got a starting point to learn more on your own.
 
 # Ready-Made Tile Services
 
@@ -131,25 +139,8 @@ One big benefit of the `tmap` workflow is the built in option to add norh arrows
 
 Remember that even if a tile service makes a dataset easy to use, you still need to comply with the terms of service for that specific dataset.
 
-Let's replace our base layers (states and lakes) with the default basemap.
-
-```{r echo = TRUE}
-
-  #create a bounding box object for the zoom area of our map
-  aoi <- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))
-
-                     
-```
-
-What about a base layer with some more color or labels? Let's add the OpenStreetMap tile service.
-
-```{r echo = TRUE}
-
-  #create a bounding box object for the zoom area of our map
-  aoi <- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))
-                   
-```
+Unfortunately, it seems that the current version of ggmap requires you to have a Google API Key to access even non-Google tiles. That's outside the scope of this workshop, but there is documentation on the internet for how to use this tool to build `ggplot2` maps on top of a basemaps.
 
 ## Summary
 
-We've seen that we can build a map in layers using `tmap` in a similar manner to the workflow we used in the base `plot()` workflow.  `tmap` has more built-in features for composing maps and finer control over some aspects of maps like north arrows and scale bars. It also has built-in base map tools which makes making a map quick.  But `tmap` still doesn't have an easy way to deal with label placement.
+We've seen that we can build a map in layers using `ggplot2` in a similar manner to the workflow we used in the base `plot()` and `tmap` workflow.  `ggplot2` is an entire universe of plot creation with many options for fine control and attractive themes that you can explore.  It has perhaps the steepest learning curve, but also has big rewards if you have the patience to stick with it. 
