@@ -93,17 +93,22 @@ The goal of styling our data is to help it communicate better. Dots on top of st
 
 ## Add Text Labels
 
-Let's add some text labels so we know what the names of each of the monsters are. 
+Let's add some text labels so we know what the names of each of the monsters are. We can just update the last line of the code we wrote above, adding the labeling details.
 
 ```{r echo = TRUE}
 
-  #create a bounding box object for the zoom area of our map
-  aoi <- st_bbox(c(xmin = -96, xmax = -73, ymax = 50, ymin = 40), crs = st_crs(4326))
-
+  gg_monsters +                   
+  theme(
+    panel.background = element_rect(fill = ocean_color, color = ocean_color),
+    panel.grid.major = element_line(color = ocean_color),
+    panel.grid.minor = element_line(color = ocean_color),
+    panel.border = element_rect(color = "black", fill = NA)
+  ) +
+  geom_sf_text(data=monsters, aes(label = Name), nudge_y = -.3) #add the label text and nudge them down so the letters aren't on top of the point
                     
 ```
 
-Labeling of points is challenging for `tmap`. It doesn't have a way to avoid label collisions (overlaps) and the placement options don't really do much to avoid labels running over the symbols.  I also haven't found much guidance on placing the labels.  Most of the tutorials avoid this problem by labeling polygons where the exact placement isn't a concern.  Like the discussion of `plot()`, this map would benefit from moving the labels by hand. Export a pdf and edit it in a vector illustration software like Inkscape or Adobe Illustrator.
+Labeling of points is challenging for all of the methods we've looked at. ggplot2 has some options to avoid label collisions (overlaps) that you you can explore more on your own. If you want finer label placement control, export a pdf and edit it in a vector illustration software like Inkscape or Adobe Illustrator.
 
 
 ## North Arrow & Scale Bar
@@ -122,7 +127,7 @@ One big benefit of the `tmap` workflow is the built in option to add norh arrows
 
 # Ready-Made Tile Services
 
-Another benefit of the `tmap` workflow is the easy availability of using tile services (commonly known as "basemaps" but people use that term to mean so many other things as well). Tile services are continuous map layers that are stored in square chunks (tiles) so you only need to load the part of the world in your area of interest. One tile service that may people are familiar with is Google Maps, but open data like OpenStreetMap is also available as a tile service.
+[ggmap](https://cran.r-project.org/web/packages/ggmap/index.html) is another popular package for making maps in R that extends the `ggplot2` concept.  ggmap assumes you want to use a basemap with every plot. 
 
 Remember that even if a tile service makes a dataset easy to use, you still need to comply with the terms of service for that specific dataset.
 
