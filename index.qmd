@@ -29,3 +29,4 @@ For the best experience, we recommend learners have the following skills before 
 * an introductory understanding of programming in R (for example, you are familiar with how to load libraries, load common data formats like a CSV, and are comfortable running basic commands). See DataLab's [R Basics Workshop](https://ucdavisdatalab.github.io/workshop_r_basics/) for help.
 * an introductory understanding of spatial data (for example, you are familiar with the difference between raster and vector data). See DataLab's [Spatial Data Formats Workshop](https://ucdavisdatalab.github.io/workshop_spatial_data_formats/) for help.
 * (recommended) review the concepts (first section) of DataLab's [Cartography for Academic Publications Workshop](https://github.com/MicheleTobias/Workshop-Cartography-Journal-Figures)
+* (recommended) review the Davis R Users Group's [Intro to GIS in R Workshop](https://github.com/d-rug/intro_gis_in_r)
