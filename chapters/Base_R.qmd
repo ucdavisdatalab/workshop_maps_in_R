@@ -140,6 +140,8 @@ We don't have much control over label placement with base `plot()` or the graphi
 Having the state outlines as background information is clean and simple, but perhaps we want to include some information about the physical environment in which these monsters are found. A digital elevation model (DEM) will give us an indication of where the higher elevations are and the complexity of the landscape.
 
 ```{r echo = TRUE}
+  #create a bounding box object for the zoom area of our map
+  aoi <- st_bbox(c(xmin = -95, xmax = -70, ymax = 49.5, ymin = 39), crs = st_crs(4326))
 
 	dem_aoi <- crop(dem, aoi) #crop the DEM to the AOI because you can't set the extent with terra::plot()
 
