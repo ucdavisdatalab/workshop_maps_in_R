@@ -136,6 +136,54 @@ Let's add some text labels so we know what the names of each of the monsters are
 ```
 We don't have much control over label placement with base `plot()` or the graphic's final dimensions. If you want to edit this with more control, you could export a pdf file and edit it with a vector illustration software like Inkscape or Adobe Illustrator.
 
+## Add Raster Data
+Having the state outlines as background information is clean and simple, but perhaps we want to include some information about the physical environment in which these monsters are found. A digital elevation model (DEM) will give us an indication of where the higher elevations are and the complexity of the landscape.
+
+```{r echo = TRUE}
+
+	dem_aoi <- crop(dem, aoi) #crop the DEM to the AOI because you can't set the extent with terra::plot()
+
+	options(terra.pal=gray.colors(20)) #set the colors for the raster
+
+	plot(dem_aoi,                #plot the cropped raster
+		 legend = FALSE,         #turn off the legend
+		 axes = FALSE,           #turn off the lat/long ticks
+								 #set the break points on the color ramp: min, high water line, then divide up the rest evenly
+		 breaks = c(
+		 -67.6842, 
+		 5, 
+		 seq(6, 1574, 88)) 
+		 )
+
+	plot(
+	  st_geometry(states),       
+	  #col="white",				 #comment out fill color for transparent fill
+	  border="gray30",           
+	  lwd = 1.5,
+	  bg="lightblue3",            
+	  add=TRUE
+	)   
+
+	plot(st_geometry(lakes), 
+		 col="lightblue",
+		 border="lightblue4",
+		 lwd=2,                  
+		 add=TRUE)
+
+	plot(st_geometry(monsters), 
+		 pch = 19,               
+		 cex = 1.5,               
+		 add=TRUE)
+
+	text(monsters,               
+		 monsters$Name,          
+		 cex = 0.75,             
+		 pos = 1)                
+
+
+```
+
+
 ## North Arrow & Scale Bar
 
 The base `plot()` function isn't really designed to make publication-ready maps. Adding a scale bar and north arrow are not really in the scope of this particular work flow so we'll skip that here. However, the map we made probably doesn't need those things if our audience is familiar with the Great Lakes area because they map itself would convey a sense of scale and orientation.

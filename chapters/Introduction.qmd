@@ -28,6 +28,7 @@ This is the folder structure this workshop will assume you have:
 **workshop_maps_in_r**/
 
 └── **data**/
+	     └── dem.tif
      
 	     └── LakeMonsters.gpkg
      
@@ -67,7 +68,8 @@ Load the libraries that we will need. If you have not installed these packages y
 ```{r eval=TRUE, echo = TRUE, warning=FALSE, output=FALSE}
 	# load libraries
 	
-	library(sf)   # for working with spatial data
+	library(sf)   	# for working with vector spatial data
+	library(terra)	# for working with raster spatial data
 ```
 
 Let's load the data we'll need.
@@ -78,5 +80,6 @@ Let's load the data we'll need.
 	monsters <- st_read("data/LakeMonsters.gpkg")
 	lakes <- st_read("data/Lakes_GreatLakes-Area.gpkg")
 	states <- st_read("data/US_CAN_Admin1.gpkg")
+	dem <- rast("data/dem.tif")
 ```
 

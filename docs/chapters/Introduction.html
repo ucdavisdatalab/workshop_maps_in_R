@@ -255,7 +255,7 @@ Directory Structure
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>workshop_maps_in_r</strong>/</p>
-<p>└── <strong>data</strong>/</p>
+<p>└── <strong>data</strong>/ └── dem.tif</p>
 <pre><code>     └── LakeMonsters.gpkg
  
      └── Lakes_GreatLakes-Area.gpkg  
@@ -287,7 +287,8 @@ Directory Structure
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load libraries</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(sf)   <span class="co"># for working with spatial data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(sf)     <span class="co"># for working with vector spatial data</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(terra)  <span class="co"># for working with raster spatial data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s load the data we’ll need.</p>
 <div class="cell" data-ouput="false">
@@ -326,6 +327,7 @@ Dimension:     XY
 Bounding box:  xmin: -178.1945 ymin: 18.96391 xmax: -52.65365 ymax: 83.11611
 Geodetic CRS:  WGS 84</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>    dem <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"data/dem.tif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
